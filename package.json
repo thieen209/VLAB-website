@@ -1,0 +1,20 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "assets/scripts/main.js",
+  "scripts": {
+    "start": "npx serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.31.0",
+    "motion": "^13.0.0",
+    "tailwind-merge": "^3.6.0"
+  }
+}
