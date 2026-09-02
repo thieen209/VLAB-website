@@ -520,9 +520,9 @@ function initSandboxManager() {
         </div>
 
         <div style="display:flex; gap:6px; margin-top:8px;">
-          <button class="btn btn--secondary ph-preset" data-ph="2.0" style="flex:1; padding:6px; font-size:0.75rem;">Axit (pH 2)</button>
-          <button class="btn btn--secondary ph-preset" data-ph="7.0" style="flex:1; padding:6px; font-size:0.75rem;">Trung tính (pH 7)</button>
-          <button class="btn btn--secondary ph-preset" data-ph="12.0" style="flex:1; padding:6px; font-size:0.75rem;">Bazơ (pH 12)</button>
+          <button class="btn btn--secondary ph-preset" data-ph="2.0" style="flex:1; padding:6px; font-size:0.75rem;">${isVi ? 'Axit' : 'Acid'} (pH 2)</button>
+          <button class="btn btn--secondary ph-preset" data-ph="7.0" style="flex:1; padding:6px; font-size:0.75rem;">${isVi ? 'Trung tính' : 'Neutral'} (pH 7)</button>
+          <button class="btn btn--secondary ph-preset" data-ph="12.0" style="flex:1; padding:6px; font-size:0.75rem;">${isVi ? 'Bazơ' : 'Base'} (pH 12)</button>
         </div>
       `;
 
@@ -601,10 +601,10 @@ function initSandboxManager() {
 
         <div class="sandbox-control-group" style="display:flex; gap:10px; margin-top:10px;">
           <button class="btn btn--secondary" id="toggle-a" style="flex:1; padding:10px; font-size:0.84rem; justify-content:center;">
-            Switch A: <strong style="color:${params.switchA ? 'var(--success)' : 'var(--text-tertiary)'}; margin-left:4px;">${params.switchA ? '1 (ON)' : '0 (OFF)'}</strong>
+            ${isVi ? 'Công tắc A' : 'Switch A'}: <strong style="color:${params.switchA ? 'var(--success)' : 'var(--text-tertiary)'}; margin-left:4px;">${params.switchA ? '1 (ON)' : '0 (OFF)'}</strong>
           </button>
           <button class="btn btn--secondary" id="toggle-b" style="flex:1; padding:10px; font-size:0.84rem; justify-content:center;">
-            Switch B: <strong style="color:${params.switchB ? 'var(--success)' : 'var(--text-tertiary)'}; margin-left:4px;">${params.switchB ? '1 (ON)' : '0 (OFF)'}</strong>
+            ${isVi ? 'Công tắc B' : 'Switch B'}: <strong style="color:${params.switchB ? 'var(--success)' : 'var(--text-tertiary)'}; margin-left:4px;">${params.switchB ? '1 (ON)' : '0 (OFF)'}</strong>
           </button>
         </div>
       `;
@@ -621,11 +621,11 @@ function initSandboxManager() {
       const btnB = document.getElementById('toggle-b');
       btnA.addEventListener('click', () => {
         params.switchA = !params.switchA;
-        btnA.innerHTML = `Switch A: <strong style="color:${params.switchA ? 'var(--success)' : 'var(--text-tertiary)'}; margin-left:4px;">${params.switchA ? '1 (ON)' : '0 (OFF)'}</strong>`;
+        btnA.innerHTML = `${isVi ? 'Công tắc A' : 'Switch A'}: <strong style="color:${params.switchA ? 'var(--success)' : 'var(--text-tertiary)'}; margin-left:4px;">${params.switchA ? '1 (ON)' : '0 (OFF)'}</strong>`;
       });
       btnB.addEventListener('click', () => {
         params.switchB = !params.switchB;
-        btnB.innerHTML = `Switch B: <strong style="color:${params.switchB ? 'var(--success)' : 'var(--text-tertiary)'}; margin-left:4px;">${params.switchB ? '1 (ON)' : '0 (OFF)'}</strong>`;
+        btnB.innerHTML = `${isVi ? 'Công tắc B' : 'Switch B'}: <strong style="color:${params.switchB ? 'var(--success)' : 'var(--text-tertiary)'}; margin-left:4px;">${params.switchB ? '1 (ON)' : '0 (OFF)'}</strong>`;
       });
     }
   }

@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://vlab-stem.edu.vn/</loc>
+    <loc>https://vlabwebapp.vercel.app/</loc>
     <lastmod>2026-09-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://vlab-stem.edu.vn/?lang=vi"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://vlab-stem.edu.vn/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://vlabwebapp.vercel.app/?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vlabwebapp.vercel.app/?lang=en"/>
   </url>
 </urlset>
