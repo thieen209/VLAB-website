@@ -3,1024 +3,709 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VLAB — Nền Tảng Phòng Thí Nghiệm Ảo STEM Nhập Vai</title>
-  <meta name="description" content="VLAB — Nền tảng phòng thí nghiệm ảo STEM thế hệ mới dành cho học sinh THPT. Nhập vai VR, tương tác 3D với bộ điều khiển ESP32 dưới $20. Giải pháp đột phá từ Samsung Solve for Tomorrow.">
-  <meta name="keywords" content="VLAB, phòng thí nghiệm ảo, STEM, VR education, thực tế ảo giáo dục, ESP32, thực hành khoa học, Vật lý, Hóa học, Sinh học, Kỹ thuật">
   
-  <!-- Fonts: Plus Jakarta Sans & JetBrains Mono for High-Tech / Scientific Telemetry -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  
-  <!-- FontAwesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  
-  <!-- Main Stylesheet -->
+  <!-- Primary Meta Tags -->
+  <title>VLAB — Phòng Thí Nghiệm Ảo STEM Chi Phí Thấp</title>
+  <meta name="title" content="VLAB — Phòng Thí Nghiệm Ảo STEM Chi Phí Thấp">
+  <meta name="description" content="Dự án phòng thí nghiệm ảo STEM chi phí thấp (~$20) dành cho học sinh THPT. Kết hợp kính VR điện thoại và tay cầm ESP32 tự chế. Tham gia Samsung Solve for Tomorrow 2026.">
+  <meta name="keywords" content="VLAB, phòng thí nghiệm ảo, STEM, VR giáo dục, ESP32, MPU9250, Unity XR, Samsung Solve for Tomorrow, THPT Chuyên Cao Bằng">
+  <meta name="author" content="Đội Ngựa Mán — THPT Chuyên Cao Bằng">
+  <link rel="canonical" href="https://vlab-stem.edu.vn">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vlab-stem.edu.vn/">
+  <meta property="og:title" content="VLAB — Phòng Thí Nghiệm Ảo STEM Chi Phí Thấp">
+  <meta property="og:description" content="Nền tảng thực hành STEM nhập vai với kính VR điện thoại và tay cầm ESP32 (~$20). Dự án tham gia Samsung Solve for Tomorrow 2026.">
+  <meta property="og:image" content="assets/images/logos/logo-white-text.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="VLAB — Phòng Thí Nghiệm Ảo STEM Chi Phí Thấp">
+  <meta property="twitter:description" content="Nền tảng thực hành STEM nhập vai với kính VR điện thoại và tay cầm ESP32 (~$20). Dự án tham gia Samsung Solve for Tomorrow 2026.">
+  <meta property="twitter:image" content="assets/images/logos/logo-white-text.png">
+
+  <!-- Icons & Fonts -->
+  <link rel="icon" type="image/png" href="assets/images/logos/favicon.png">
   <link rel="stylesheet" href="assets/styles/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer">
 </head>
 <body>
 
-<!-- Ambient Dynamic Background Grid & Lights -->
-<div class="bg-mesh-grid"></div>
-<div class="bg-glow-orb orb-1"></div>
-<div class="bg-glow-orb orb-2"></div>
-<div class="bg-glow-orb orb-3"></div>
+<!-- Skip Link for Keyboard Accessibility -->
+<a href="#main-content" class="skip-link" data-vi="Chuyển đến nội dung chính" data-en="Skip to main content">Chuyển đến nội dung chính</a>
+
+<!-- Ambient Grid Background -->
+<div class="bg-mesh-grid" aria-hidden="true"></div>
 
 <!-- ═══════════════════════════════════════════════════
-     NAVIGATION (Frosted Glass Floating Pill)
+     1. NAVIGATION (Floating Pill)
      ═══════════════════════════════════════════════════ -->
 <header class="nav-wrapper">
-  <nav class="nav" id="nav">
-    <div class="nav-container">
-      <a href="#" class="nav-brand" aria-label="VLAB Homepage">
+  <nav class="nav" id="nav" aria-label="Điều hướng chính">
+    <div class="container nav-container">
+      <a href="#hero" class="nav-brand" aria-label="VLAB Trang chủ">
         <img src="assets/images/logos/logo-white-text.png" alt="VLAB Logo" class="nav-logo" id="nav-logo">
       </a>
 
       <div class="nav-menu" id="nav-menu">
-        <a href="#sandbox-section" class="nav-link nav-link--highlight" data-vi="⚡ Live Sandbox" data-en="⚡ Live Sandbox">⚡ Live Sandbox</a>
-        <a href="#why" class="nav-link" data-vi="Vì sao VLAB" data-en="Why VLAB">Vì sao VLAB</a>
-        <a href="#labs" class="nav-link" data-vi="Hệ sinh thái Lab" data-en="Lab Ecosystem">Hệ sinh thái Lab</a>
-        <a href="#hardware" class="nav-link" data-vi="Phần cứng $20" data-en="$20 Hardware">Phần cứng $20</a>
-        <a href="#how" class="nav-link" data-vi="Cách hoạt động" data-en="How It Works">Cách hoạt động</a>
-        <a href="#tech" class="nav-link" data-vi="Công nghệ" data-en="Technology">Công nghệ</a>
-        <a href="#faq" class="nav-link" data-vi="Hỏi đáp" data-en="FAQ">Hỏi đáp</a>
+        <a href="#why" data-vi="Bối cảnh & Vấn đề" data-en="Context & Problem">Bối cảnh & Vấn đề</a>
+        <a href="#how" data-vi="Cách hoạt động" data-en="How It Works">Cách hoạt động</a>
+        <a href="#sandbox" data-vi="Mô phỏng Web" data-en="Web Simulator">Mô phỏng Web</a>
+        <a href="#status" data-vi="Hiện trạng & Thực nghiệm" data-en="Verified Prototype">Hiện trạng & Thực nghiệm</a>
+        <a href="#roadmap" data-vi="Lộ trình" data-en="Roadmap">Lộ trình</a>
+        <a href="#faq" data-vi="Hỏi đáp" data-en="FAQ">Hỏi đáp</a>
       </div>
 
       <div class="nav-right">
         <!-- Bilingual Switcher -->
-        <div class="lang-toggle" role="group" aria-label="Language Selector">
-          <button class="lang-btn active" id="lang-vi" title="Tiếng Việt">VI</button>
-          <button class="lang-btn" id="lang-en" title="English">EN</button>
+        <div class="lang-toggle" role="group" aria-label="Chọn ngôn ngữ">
+          <button class="lang-btn active" id="lang-vi" aria-label="Chuyển sang Tiếng Việt">VI</button>
+          <button class="lang-btn" id="lang-en" aria-label="Switch to English">EN</button>
         </div>
 
-        <!-- Dark/Light Theme Switcher -->
-        <button class="theme-toggle" id="theme-toggle" title="Chuyển đổi giao diện Sáng / Tối" aria-label="Toggle Theme">
-          <i class="fas fa-moon" id="theme-icon"></i>
+        <!-- Theme Toggle -->
+        <button class="theme-toggle" id="theme-toggle" title="Đổi giao diện sáng/tối" aria-label="Đổi giao diện sáng/tối">
+          <i class="fas fa-moon" id="theme-icon" aria-hidden="true"></i>
         </button>
 
-        <!-- CTA Action -->
-        <a href="#sandbox-section" class="nav-cta" data-vi="Trải nghiệm ngay" data-en="Launch Sandbox">
-          <i class="fas fa-flask"></i> <span data-vi="Trải nghiệm" data-en="Launch">Trải nghiệm</span>
+        <!-- GitHub / Quick CTA -->
+        <a href="#sandbox" class="nav-cta" data-vi="Thử Demo Web" data-en="Try Web Demo">
+          <i class="fas fa-play" aria-hidden="true"></i> <span>Thử Demo Web</span>
         </a>
 
-        <!-- Mobile Menu Toggle -->
-        <button class="nav-mobile-btn" id="nav-mobile-btn" aria-label="Open Menu">
-          <i class="fas fa-bars"></i>
+        <!-- Mobile Menu Trigger -->
+        <button class="nav-mobile-btn" id="nav-mobile-btn" aria-label="Mở menu di động" aria-expanded="false">
+          <i class="fas fa-bars" aria-hidden="true"></i>
         </button>
       </div>
     </div>
   </nav>
 
   <!-- Mobile Drawer Menu -->
-  <div class="mobile-drawer" id="mobile-drawer">
-    <a href="#sandbox-section" class="mobile-link text-gradient" data-vi="⚡ Live STEM Sandbox" data-en="⚡ Live STEM Sandbox">⚡ Live STEM Sandbox</a>
-    <a href="#why" class="mobile-link" data-vi="Vì sao chọn VLAB" data-en="Why VLAB">Vì sao chọn VLAB</a>
-    <a href="#labs" class="mobile-link" data-vi="4 Phòng thí nghiệm" data-en="4 Virtual Labs">4 Phòng thí nghiệm</a>
-    <a href="#hardware" class="mobile-link" data-vi="Bộ điều khiển ESP32 $20" data-en="$20 Controller Kit">Bộ điều khiển ESP32 $20</a>
-    <a href="#how" class="mobile-link" data-vi="Cách thức hoạt động" data-en="How It Works">Cách thức hoạt động</a>
-    <a href="#tech" class="mobile-link" data-vi="Kiến trúc công nghệ" data-en="Technology">Kiến trúc công nghệ</a>
+  <div class="mobile-nav-drawer" id="mobile-drawer" aria-hidden="true">
+    <a href="#why" class="mobile-link" data-vi="Bối cảnh & Vấn đề" data-en="Context & Problem">Bối cảnh & Vấn đề</a>
+    <a href="#how" class="mobile-link" data-vi="Cách hoạt động" data-en="How It Works">Cách hoạt động</a>
+    <a href="#sandbox" class="mobile-link" data-vi="Mô phỏng Web (Live Sandbox)" data-en="Web Simulator (Live Sandbox)">Mô phỏng Web (Live Sandbox)</a>
+    <a href="#status" class="mobile-link" data-vi="Hiện trạng & Thực nghiệm" data-en="Verified Prototype">Hiện trạng & Thực nghiệm</a>
+    <a href="#roadmap" class="mobile-link" data-vi="Lộ trình phát triển" data-en="Development Roadmap">Lộ trình phát triển</a>
     <a href="#faq" class="mobile-link" data-vi="Hỏi đáp thường gặp" data-en="FAQ">Hỏi đáp thường gặp</a>
-    <div class="mobile-cta-wrap">
-      <a href="#sandbox-section" class="btn btn--primary btn--full" data-vi="🚀 Thử nghiệm Lab Trực tuyến" data-en="🚀 Try Virtual Lab Now">🚀 Thử nghiệm Lab Trực tuyến</a>
+    <div style="padding-top: 12px; border-top: 1px solid var(--border); display: flex; gap: 10px;">
+      <a href="https://github.com/thieen209/VLAB-website" target="_blank" rel="noopener noreferrer" class="btn btn--secondary" style="flex:1; justify-content:center;">
+        <i class="fab fa-github"></i> <span>GitHub Repo</span>
+      </a>
     </div>
   </div>
 </header>
 
-<!-- ═══════════════════════════════════════════════════
-     HERO SECTION (Peak Aesthetic Futuristic Lab)
-     ═══════════════════════════════════════════════════ -->
-<section class="hero" id="hero">
-  <div class="hero-radial-glow"></div>
+<main id="main-content">
+  <!-- ═══════════════════════════════════════════════════
+       2. HERO SECTION
+       ═══════════════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero-radial-glow" aria-hidden="true"></div>
 
-  <div class="container hero-container">
-    <!-- Top Pill Badge -->
-    <div class="hero-badge" data-animate>
-      <span class="hero-badge-pulse"></span>
-      <span class="hero-badge-text" data-vi="🏆 Samsung Solve for Tomorrow — Đội Ngựa Mán · THPT Chuyên Cao Bằng" data-en="🏆 Samsung Solve for Tomorrow — Ngua Man Team · Cao Bang High School">🏆 Samsung Solve for Tomorrow — Đội Ngựa Mán · THPT Chuyên Cao Bằng</span>
-    </div>
-
-    <!-- Main Title with Holographic Shimmer -->
-    <h1 class="hero-title" data-animate data-vi-html="Phòng Thí Nghiệm Ảo STEM<br><span class='text-gradient-hero'>Ngay Trên Điện Thoại.</span>" data-en-html="Immersive STEM Virtual Lab<br><span class='text-gradient-hero'>On Your Smartphone.</span>">
-      Phòng Thí Nghiệm Ảo STEM<br><span class="text-gradient-hero">Ngay Trên Điện Thoại.</span>
-    </h1>
-
-    <!-- Subtitle -->
-    <p class="hero-desc" data-animate data-vi="VLAB biến smartphone và bộ tay cầm ESP32 tự chế dưới $20 thành phòng thực hành khoa học 3D nhập vai chuẩn quốc tế — giúp học sinh Việt Nam tự do khám phá, tương tác chân thực và an toàn tuyệt đối." data-en="VLAB transforms smartphones and a <$20 custom ESP32 controller into an immersive 3D scientific laboratory — empowering students with hands-on, zero-risk, and unbounded STEM exploration.">
-      VLAB biến smartphone và bộ tay cầm ESP32 tự chế dưới $20 thành phòng thực hành khoa học 3D nhập vai chuẩn quốc tế — giúp học sinh Việt Nam tự do khám phá, tương tác chân thực và an toàn tuyệt đối.
-    </p>
-
-    <!-- CTAs & Interactive Shortcut -->
-    <div class="hero-cta-wrapper" data-animate>
-      <div class="hero-actions">
-        <a href="#sandbox-section" class="btn btn--primary btn--glow">
-          <i class="fas fa-play"></i>
-          <span data-vi="Trải nghiệm Live Sandbox" data-en="Launch Live Sandbox">Trải nghiệm Live Sandbox</span>
-          <span class="btn-shine"></span>
-        </a>
-        <a href="#hardware" class="btn btn--secondary">
-          <i class="fas fa-microchip"></i>
-          <span data-vi="Khám phá Phần cứng $20" data-en="Explore $20 Kit">Khám phá Phần cứng $20</span>
-        </a>
-        <a href="#labs" class="btn btn--ghost">
-          <i class="fas fa-cube"></i>
-          <span data-vi="4 Module Thực hành" data-en="4 Lab Modules">4 Module Thực hành</span>
-        </a>
+    <div class="container hero-container">
+      <!-- Factual SFT Attribution Pill -->
+      <div class="hero-badge-wrap" data-animate>
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          <span data-vi="Samsung Solve for Tomorrow 2026 · Đội Ngựa Mán (THPT Chuyên Cao Bằng)" data-en="Samsung Solve for Tomorrow 2026 · Ngựa Mán Team (Cao Bằng Gifted High School)">Samsung Solve for Tomorrow 2026 · Đội Ngựa Mán (THPT Chuyên Cao Bằng)</span>
+        </div>
       </div>
 
-      <!-- App Store Platforms Strip -->
-      <div class="hero-store-strip">
-        <span class="store-strip-label" data-vi="Tương thích hoàn hảo:" data-en="Fully compatible with:">Tương thích hoàn hảo:</span>
-        <span class="platform-chip"><i class="fab fa-android"></i> Android VR (Cardboard)</span>
-        <span class="platform-chip"><i class="fab fa-unity"></i> Unity 6 XR</span>
-        <span class="platform-chip"><i class="fab fa-bluetooth-b"></i> ESP32 BLE 5.0</span>
-        <span class="platform-chip"><i class="fas fa-globe"></i> WebGL / Canvas 2D</span>
-      </div>
-    </div>
+      <!-- Main Scientific Title -->
+      <h1 class="hero-title" data-animate data-vi-html="Phòng thí nghiệm ảo STEM<br><span class='text-gradient'>chi phí thấp</span> cho học sinh THPT." data-en-html="Low-cost virtual STEM lab<br>for <span class='text-gradient'>high school students.</span>">Phòng thí nghiệm ảo STEM<br><span class="text-gradient">chi phí thấp</span> cho học sinh THPT.</h1>
 
-    <!-- Futuristic Holographic Particle Core Visual (Hero Centerpiece) -->
-    <div class="hero-core-wrap" data-animate>
-      <div class="hero-core-canvas-container" id="hero-core-container">
-        <canvas id="hero-core-canvas"></canvas>
-        <div class="hero-core-overlay">
-          <div class="core-tag top-left">
-            <span class="core-tag-dot"></span>
-            <span>VLAB Physics Core v2.4</span>
+      <!-- Grounded Subtitle -->
+      <p class="hero-desc" data-animate data-vi="Biến điện thoại thông minh sẵn có và bộ điều khiển cảm biến ESP32 tự chế (~$20) thành không gian thực hành Vật lý — Hóa học — Sinh học an toàn, trực quan, giúp học sinh chủ động học qua thao tác." data-en="Transforming accessible smartphones and a custom ESP32 motion controller kit (~$20) into a safe, intuitive virtual laboratory for Physics, Chemistry, and Biology — empowering students to learn by doing.">Biến điện thoại thông minh sẵn có và bộ điều khiển cảm biến ESP32 tự chế (~$20) thành không gian thực hành Vật lý — Hóa học — Sinh học an toàn, trực quan, giúp học sinh chủ động học qua thao tác.</p>
+
+      <!-- Clear Dual CTAs -->
+      <div class="hero-cta-wrapper" data-animate>
+        <div class="hero-actions">
+          <a href="#sandbox" class="btn btn--primary">
+            <i class="fas fa-play" aria-hidden="true"></i>
+            <span data-vi="Trải nghiệm Demo Web" data-en="Try Web Demo">Trải nghiệm Demo Web</span>
+          </a>
+          <a href="#status" class="btn btn--secondary">
+            <i class="fas fa-microchip" aria-hidden="true"></i>
+            <span data-vi="Xem Kiến trúc & Nguyên mẫu" data-en="Explore Architecture & Prototype">Xem Kiến trúc & Nguyên mẫu</span>
+          </a>
+        </div>
+
+        <!-- Factual Status Note -->
+        <div class="hero-status-strip">
+          <i class="fas fa-info-circle" style="color:var(--cyan);" aria-hidden="true"></i>
+          <span data-vi="Nguyên mẫu PhysicsLab trên Unity XR đang được phát triển · Bản thử nghiệm Web sẵn sàng" data-en="PhysicsLab Unity XR prototype under active development · Live Web concept simulator available">Nguyên mẫu PhysicsLab trên Unity XR đang được phát triển · Bản thử nghiệm Web sẵn sàng</span>
+        </div>
+      </div>
+
+      <!-- Interactive 3D Hero Preview Showcase Card -->
+      <div class="hero-showcase" id="hero-showcase" data-animate>
+        <div class="showcase-glow" aria-hidden="true"></div>
+        <div class="showcase-card">
+          <div class="showcase-topbar">
+            <div class="showcase-dots" aria-hidden="true">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="showcase-title">
+              <i class="fas fa-vr-cardboard" aria-hidden="true"></i>
+              <span>VLAB VR Architecture · Unity 6 XR + ESP32</span>
+            </div>
+            <div class="showcase-status">
+              <span class="status-indicator online" aria-hidden="true"></span>
+              <span data-vi="Bản mô phỏng Web tương tác" data-en="Interactive Web Concept">Bản mô phỏng Web tương tác</span>
+            </div>
           </div>
-          <div class="core-tag top-right">
-            <i class="fas fa-bolt"></i>
-            <span>60 FPS Real-time Kinematics</span>
+
+          <div class="showcase-viewport">
+            <canvas id="showcase-canvas" aria-label="Mô phỏng 3D phòng thí nghiệm ảo tương tác"></canvas>
+            <div class="showcase-overlay" aria-hidden="true">
+              <div class="showcase-hud-badge top-left">
+                <i class="fas fa-microchip"></i> IMU: <span>MPU9250 / MPU6050</span>
+              </div>
+              <div class="showcase-hud-badge top-right">
+                <i class="fas fa-signal"></i> BLE: <span>Target ≤ 50ms</span>
+              </div>
+              <div class="showcase-interactive-hint">
+                <i class="fas fa-hand-pointer"></i> <span data-vi="Rê chuột hoặc chạm xoay góc nhìn 3D" data-en="Move mouse or touch to tilt 3D perspective">Rê chuột hoặc chạm xoay góc nhìn 3D</span>
+              </div>
+            </div>
           </div>
-          <div class="core-center-cta">
-            <a href="#sandbox-section" class="core-interactive-pill">
-              <i class="fas fa-hand-pointer"></i>
-              <span data-vi="Rê chuột tương tác & Thử nghiệm bên dưới ↓" data-en="Hover to warp & Try the Live Sandbox below ↓">Rê chuột tương tác & Thử nghiệm bên dưới ↓</span>
-            </a>
+
+          <div class="showcase-telemetry">
+            <div class="telemetry-item">
+              <span>SENSOR FUSION:</span>
+              <span class="telemetry-val" id="tele-gyro">Mahony/Kalman filter testing</span>
+            </div>
+            <div class="telemetry-item">
+              <span>HARDWARE BOM:</span>
+              <span class="telemetry-val highlight">~$20 (~450k VND)</span>
+            </div>
+            <div class="telemetry-item">
+              <span>PLATFORM:</span>
+              <span class="telemetry-val">Android Smartphone + Cardboard VR</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grounded Key Indicators -->
+      <div class="hero-stats-row" data-animate>
+        <div class="hero-stat">
+          <div class="hero-stat-value">~$20</div>
+          <div class="hero-stat-label" data-vi="Ước tính linh kiện tự chế" data-en="Estimated DIY hardware cost">Ước tính linh kiện tự chế</div>
+        </div>
+        <div class="hero-stat-divider" aria-hidden="true"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-value">4 Miền</div>
+          <div class="hero-stat-label" data-vi="Vật lý · Hóa · Sinh · Kỹ thuật" data-en="Physics · Chem · Bio · Engineering">Vật lý · Hóa · Sinh · Kỹ thuật</div>
+        </div>
+        <div class="hero-stat-divider" aria-hidden="true"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-value">Android</div>
+          <div class="hero-stat-label" data-vi="Tận dụng smartphone sẵn có" data-en="Leverages student smartphones">Tận dụng smartphone sẵn có</div>
+        </div>
+        <div class="hero-stat-divider" aria-hidden="true"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-value">100% An toàn</div>
+          <div class="hero-stat-label" data-vi="Thử sai không rủi ro hóa chất" data-en="Zero chemical/physical hazards">Thử sai không rủi ro hóa chất</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       3. WHY VLAB — Problem & Educational Context
+       ═══════════════════════════════════════════════════ -->
+  <section class="section" id="why">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label" data-animate><span data-vi="Bối cảnh thực tế" data-en="Educational Context">Bối cảnh thực tế</span></div>
+        <h2 class="section-title" data-animate data-vi-html="Thu hẹp khoảng cách thực hành STEM<br><span class='text-gradient'>bằng giải pháp công nghệ chi phí thấp.</span>" data-en-html="Bridging the STEM practical gap<br><span class='text-gradient'>with low-cost technology.</span>">Thu hẹp khoảng cách thực hành STEM<br><span class="text-gradient">bằng giải pháp công nghệ chi phí thấp.</span></h2>
+        <p class="section-subtitle" data-animate data-vi="Xuất phát từ thực tế các trường THPT tại khu vực miền núi như Cao Bằng, điều kiện phòng thí nghiệm còn nhiều thiếu thốn, khiến học sinh chủ yếu học lý thuyết qua sách vở." data-en="Originating from the reality in mountainous high schools like Cao Bằng, laboratory facilities remain limited, leaving students mostly learning theory from textbooks.">Xuất phát từ thực tế các trường THPT tại khu vực miền núi như Cao Bằng, điều kiện phòng thí nghiệm còn nhiều thiếu thốn, khiến học sinh chủ yếu học lý thuyết qua sách vở.</p>
+      </div>
+
+      <div class="bento-grid" data-animate>
+        <!-- Card 1 -->
+        <div class="bento-card bento-card--large">
+          <div class="bento-icon"><i class="fas fa-school" aria-hidden="true"></i></div>
+          <div>
+            <h3 data-vi="Thiếu thốn trang thiết bị thí nghiệm tiêu chuẩn" data-en="Limited access to physical lab apparatus">Thiếu thốn trang thiết bị thí nghiệm tiêu chuẩn</h3>
+            <p data-vi="Nhiều trường học vùng sâu, vùng xa không có đủ bộ dụng cụ thí nghiệm cho từng học sinh. Mỗi lớp 40–45 em thường chỉ được quan sát giáo viên làm mẫu từ xa, thiếu cơ hội trực tiếp cầm nắm và thao tác." data-en="Many remote schools lack sufficient experimental equipment sets for each student. Classes of 40–45 often only observe teacher demonstrations from afar, lacking hands-on manipulation opportunities.">Nhiều trường học vùng sâu, vùng xa không có đủ bộ dụng cụ thí nghiệm cho từng học sinh. Mỗi lớp 40–45 em thường chỉ được quan sát giáo viên làm mẫu từ xa, thiếu cơ hội trực tiếp cầm nắm và thao tác.</p>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bento-card">
+          <div class="bento-icon"><i class="fas fa-coins" aria-hidden="true"></i></div>
+          <div>
+            <h3 data-vi="Kính VR chuyên dụng quá đắt đỏ" data-en="High-end VR headsets are inaccessible">Kính VR chuyên dụng quá đắt đỏ</h3>
+            <p data-vi="Các thiết bị VR độc lập (như Oculus/Meta Quest) có giá từ 10–15 triệu VNĐ, hoàn toàn vượt quá khả năng đầu tư đại trà của các trường công lập." data-en="Dedicated standalone VR headsets ($400–$800) are financially out of reach for widespread deployment in public schools.">Các thiết bị VR độc lập (như Oculus/Meta Quest) có giá từ 10–15 triệu VNĐ, hoàn toàn vượt quá khả năng đầu tư đại trà của các trường công lập.</p>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bento-card">
+          <div class="bento-icon"><i class="fas fa-shield-halved" aria-hidden="true"></i></div>
+          <div>
+            <h3 data-vi="Rủi ro an toàn và hao phí hóa chất" data-en="Safety hazards & recurring consumables">Rủi ro an toàn và hao phí hóa chất</h3>
+            <p data-vi="Các phản ứng hóa học tỏa nhiệt, dung dịch axit đặc hoặc mạch điện công suất cao tiềm ẩn nguy cơ chấn thương và chi phí mua sắm hóa chất định kỳ." data-en="Exothermic reactions, concentrated acids, or high-current circuits present safety concerns and ongoing consumable replenishment costs.">Các phản ứng hóa học tỏa nhiệt, dung dịch axit đặc hoặc mạch điện công suất cao tiềm ẩn nguy cơ chấn thương và chi phí mua sắm hóa chất định kỳ.</p>
+          </div>
+        </div>
+
+        <!-- Card 4: The VLAB Solution -->
+        <div class="bento-card bento-card--large" style="border-color: var(--border-glow);">
+          <div class="bento-icon" style="background: var(--cyan-soft); color: var(--cyan);"><i class="fas fa-lightbulb" aria-hidden="true"></i></div>
+          <div>
+            <h3 data-vi="Giải pháp VLAB: Bổ trợ thực hành với chi phí tối thiểu" data-en="The VLAB Approach: Accessible Practical Supplement">Giải pháp VLAB: Bổ trợ thực hành với chi phí tối thiểu</h3>
+            <p data-vi="VLAB không nhằm thay thế hoàn toàn phòng lab thật, mà đóng vai trò công cụ bổ trợ trực quan: giúp học sinh chuẩn bị trước thí nghiệm, hiểu sâu bản chất vật lý/hóa học, tự do thử sai và lặp lại bài học vô số lần với chi phí phần cứng chỉ khoảng 20 USD (~450.000 VNĐ)." data-en="VLAB does not claim to replace real physical labs, but serves as an accessible visual supplement: helping students pre-visualize experiments, comprehend underlying scientific principles, retry freely, and practice repeatedly at ~$20 hardware cost.">VLAB không nhằm thay thế hoàn toàn phòng lab thật, mà đóng vai trò công cụ bổ trợ trực quan: giúp học sinh chuẩn bị trước thí nghiệm, hiểu sâu bản chất vật lý/hóa học, tự do thử sai và lặp lại bài học vô số lần với chi phí phần cứng chỉ khoảng 20 USD (~450.000 VNĐ).</p>
           </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Live Telemetry Stats Dashboard Strip -->
-    <div class="hero-stats-row" data-animate>
-      <div class="hero-stat-card">
-        <div class="hero-stat-icon"><i class="fas fa-wallet"></i></div>
-        <div>
-          <div class="hero-stat-value text-gradient">~$20</div>
-          <div class="hero-stat-label" data-vi="Chi phí linh kiện bộ kit" data-en="Complete kit hardware cost">Chi phí linh kiện bộ kit</div>
+  <!-- ═══════════════════════════════════════════════════
+       4. HOW IT WORKS & ARCHITECTURE
+       ═══════════════════════════════════════════════════ -->
+  <section class="section section--alt" id="how">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label" data-animate><span data-vi="Nguyên lý hoạt động" data-en="How It Works">Nguyên lý hoạt động</span></div>
+        <h2 class="section-title" data-animate data-vi="Từ thao tác tay cầm đến không gian 3D tương tác." data-en="From controller motion to interactive 3D space.">Từ thao tác tay cầm đến không gian 3D tương tác.</h2>
+        <p class="section-subtitle" data-animate data-vi="Quy trình tích hợp 3 thành phần: Tay cầm cảm biến ESP32, kết nối Bluetooth Low Energy và môi trường mô phỏng Unity XR trên điện thoại Android." data-en="Integrated workflow across 3 layers: Custom ESP32 IMU controller, Bluetooth Low Energy sync, and Unity XR simulation on Android.">Quy trình tích hợp 3 thành phần: Tay cầm cảm biến ESP32, kết nối Bluetooth Low Energy và môi trường mô phỏng Unity XR trên điện thoại Android.</p>
+      </div>
+
+      <!-- 4 Practical Steps -->
+      <div class="arch-grid" data-animate>
+        <div class="arch-card">
+          <div class="arch-step-num">1</div>
+          <h3 data-vi="Tay cầm ESP32 + IMU" data-en="ESP32 Controller + IMU">Tay cầm ESP32 + IMU</h3>
+          <p data-vi="Cảm biến gia tốc & con quay hồi chuyển (MPU9250/MPU6050) thu nhận hướng xoay cổ tay và thao tác nút bấm của học sinh." data-en="Inertial sensor (MPU9250/MPU6050) captures wrist orientation and button trigger inputs from the student.">Cảm biến gia tốc & con quay hồi chuyển (MPU9250/MPU6050) thu nhận hướng xoay cổ tay và thao tác nút bấm của học sinh.</p>
+        </div>
+
+        <div class="arch-card">
+          <div class="arch-step-num">2</div>
+          <h3 data-vi="Truyền dữ liệu BLE 4.2" data-en="BLE 4.2 Data Stream">Truyền dữ liệu BLE 4.2</h3>
+          <p data-vi="Vi điều khiển ESP32 xử lý lọc thô và truyền dữ liệu góc quay (quaternion/euler) không dây sang điện thoại qua Bluetooth Low Energy." data-en="ESP32 MCU processes preliminary filtering and streams rotational quaternion data wirelessly to the phone via Bluetooth Low Energy.">Vi điều khiển ESP32 xử lý lọc thô và truyền dữ liệu góc quay (quaternion/euler) không dây sang điện thoại qua Bluetooth Low Energy.</p>
+        </div>
+
+        <div class="arch-card">
+          <div class="arch-step-num">3</div>
+          <h3 data-vi="Dựng hình Unity XR & Kính VR" data-en="Unity XR & VR Headset">Dựng hình Unity XR & Kính VR</h3>
+          <p data-vi="Ứng dụng Unity XR hiển thị hình ảnh phân tách 2 mắt (stereoscopic), cho phép quan sát không gian 3D khi gài điện thoại vào kính VR giá rẻ." data-en="Unity XR application renders stereoscopic split-screen visuals, creating immersive 3D depth when slotted into an affordable VR headset.">Ứng dụng Unity XR hiển thị hình ảnh phân tách 2 mắt (stereoscopic), cho phép quan sát không gian 3D khi gài điện thoại vào kính VR giá rẻ.</p>
         </div>
       </div>
-      <div class="hero-stat-divider"></div>
-      <div class="hero-stat-card">
-        <div class="hero-stat-icon"><i class="fas fa-gauge-high"></i></div>
-        <div>
-          <div class="hero-stat-value text-gradient">≤ 18ms</div>
-          <div class="hero-stat-label" data-vi="Độ trễ truyền BLE cực thấp" data-en="Ultra-low BLE data latency">Độ trễ truyền BLE cực thấp</div>
+
+      <!-- 3-Layer System Breakdown Card -->
+      <div class="matrix-card" data-animate>
+        <div class="matrix-card-header">
+          <h3 data-vi="Kiến trúc hệ thống 3 lớp tiêu chuẩn" data-en="3-Layer System Architecture Breakdown">Kiến trúc hệ thống 3 lớp tiêu chuẩn</h3>
+          <p data-vi="Thiết kế module hóa giúp dễ dàng thay thế linh kiện phần cứng hoặc cập nhật các bài học STEM mới mà không phụ thuộc nền tảng." data-en="Modular design allows straightforward hardware component substitution and new STEM experiment additions.">Thiết kế module hóa giúp dễ dàng thay thế linh kiện phần cứng hoặc cập nhật các bài học STEM mới mà không phụ thuộc nền tảng.</p>
         </div>
-      </div>
-      <div class="hero-stat-divider"></div>
-      <div class="hero-stat-card">
-        <div class="hero-stat-icon"><i class="fas fa-atom"></i></div>
-        <div>
-          <div class="hero-stat-value text-gradient">4 STEM</div>
-          <div class="hero-stat-label" data-vi="Lý · Hóa · Sinh · Kỹ Thuật" data-en="Physics · Chem · Bio · Eng">Lý · Hóa · Sinh · Kỹ Thuật</div>
-        </div>
-      </div>
-      <div class="hero-stat-divider"></div>
-      <div class="hero-stat-card">
-        <div class="hero-stat-icon"><i class="fas fa-shield-halved"></i></div>
-        <div>
-          <div class="hero-stat-value text-gradient">100%</div>
-          <div class="hero-stat-label" data-vi="An toàn · Thử sai không rủi ro" data-en="Safe · Zero chemical risk">An toàn · Thử sai không rủi ro</div>
+
+        <div class="table-responsive">
+          <table class="clean-table">
+            <thead>
+              <tr>
+                <th data-vi="Tầng hệ thống" data-en="System Layer">Tầng hệ thống</th>
+                <th data-vi="Thành phần công nghệ" data-en="Technology Stack">Thành phần công nghệ</th>
+                <th data-vi="Chức năng chính" data-en="Core Responsibility">Chức năng chính</th>
+                <th data-vi="Trạng thái thực tế" data-en="Current Status">Trạng thái thực tế</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong style="color:var(--text-primary);" data-vi="1. Phần cứng (Hardware)" data-en="1. Hardware Layer">1. Phần cứng (Hardware)</strong></td>
+                <td>ESP32 DevKit V1 + MPU9250/MPU6050 + Nút bấm + Vỏ PLA in 3D</td>
+                <td data-vi="Thu nhận chuyển động xoay 3 trục (3DoF/quaternion) và tín hiệu tương tác" data-en="Capture 3-axis rotational tracking (3DoF/quaternion) & interaction inputs">Thu nhận chuyển động xoay 3 trục (3DoF/quaternion) và tín hiệu tương tác</td>
+                <td><span class="badge badge--prototype" data-vi="Nguyên mẫu phần cứng" data-en="Hardware Prototype">Nguyên mẫu phần cứng</span></td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--text-primary);" data-vi="2. Truyền thông (Communication)" data-en="2. Communication Layer">2. Truyền thông (Communication)</strong></td>
+                <td>Bluetooth Low Energy (BLE 4.2 standard GATT Profile)</td>
+                <td data-vi="Đóng gói gói tin sensor 16–20 bytes, truyền không dây với độ trễ mục tiêu ≤ 50ms" data-en="Packetize 16–20 byte sensor payload, stream wirelessly with ≤ 50ms target latency">Đóng gói gói tin sensor 16–20 bytes, truyền không dây với độ trễ mục tiêu ≤ 50ms</td>
+                <td><span class="badge badge--prototype" data-vi="Đang hoàn thiện firmware" data-en="Firmware in progress">Đang hoàn thiện firmware</span></td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--text-primary);" data-vi="3. Mô phỏng & Dựng hình (Rendering)" data-en="3. Rendering Layer">3. Mô phỏng & Dựng hình (Rendering)</strong></td>
+                <td>Unity 6 XR (Android APK) + WebGL Canvas Sandbox (Trình duyệt)</td>
+                <td data-vi="Mô phỏng động lực học vật lý, phản ứng hóa học và tương tác thị giác 3D" data-en="Simulate physics dynamics, chemical reactions, and interactive 3D visuals">Mô phỏng động lực học vật lý, phản ứng hóa học và tương tác thị giác 3D</td>
+                <td><span class="badge badge--demo" data-vi="Web Demo sẵn sàng · Unity prototype" data-en="Web Demo ready · Unity prototype">Web Demo sẵn sàng · Unity prototype</span></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
+  </section>
 
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     FLAGSHIP FEATURE: LIVE INTERACTIVE STEM SANDBOX SUITE
-     ═══════════════════════════════════════════════════ -->
-<section class="section section--sandbox" id="sandbox-section">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label" data-animate>
-        <i class="fas fa-microscope"></i>
-        <span data-vi="Phòng Thí Nghiệm Trực Tiếp" data-en="Live Virtual Laboratory">Phòng Thí Nghiệm Trực Tiếp</span>
+  <!-- ═══════════════════════════════════════════════════
+       5. INTERACTIVE STEM WEB SANDBOX
+       ═══════════════════════════════════════════════════ -->
+  <section class="section" id="sandbox">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label" data-animate><span data-vi="Trải nghiệm thực tế" data-en="Live Simulation">Trải nghiệm thực tế</span></div>
+        <h2 class="section-title" data-animate data-vi-html="Thử nghiệm mô phỏng trực tiếp<br><span class='text-gradient'>ngay trên trình duyệt.</span>" data-en-html="Try live STEM simulations<br><span class='text-gradient'>right in your browser.</span>">Thử nghiệm mô phỏng trực tiếp<br><span class="text-gradient'>ngay trên trình duyệt.</span></h2>
+        <p class="section-subtitle" data-animate data-vi="Bản sandbox trực quan giúp bạn kiểm chứng ngay các nguyên lý Vật lý, Hóa học, Sinh học và Mạch điện trước khi chuyển vào môi trường kính VR." data-en="An interactive web demonstration allowing you to explore Physics, Chemistry, Biology, and Logic circuit principles before VR deployment.">Bản sandbox trực quan giúp bạn kiểm chứng ngay các nguyên lý Vật lý, Hóa học, Sinh học và Mạch điện trước khi chuyển vào môi trường kính VR.</p>
       </div>
-      <h2 class="section-title" data-animate data-vi-html="Trải nghiệm Sandbox STEM Ngay Trên Trình Duyệt" data-en-html="Interactive STEM Sandbox Directly in Browser">
-        Trải nghiệm Sandbox STEM Ngay Trên Trình Duyệt
-      </h2>
-      <p class="section-subtitle" data-animate data-vi="Khám phá công nghệ mô phỏng vật lý, hóa học, sinh học và mạch điện tử trực quan. Kéo thả, điều chỉnh thông số và quan sát đồ thị dữ liệu thời gian thực." data-en="Explore real-time physics simulation, chemical titration, biological microscopy, and digital circuitry. Drag, adjust variables, and watch live data curves.">
-        Khám phá công nghệ mô phỏng vật lý, hóa học, sinh học và mạch điện tử trực quan. Kéo thả, điều chỉnh thông số và quan sát đồ thị dữ liệu thời gian thực.
-      </p>
-    </div>
 
-    <!-- Main Sandbox Console Frame -->
-    <div class="sandbox-console" data-animate>
-      <!-- Top Control Bar -->
-      <div class="sandbox-topbar">
-        <div class="sandbox-tabs" role="tablist">
-          <button class="sandbox-tab active" data-lab="physics" role="tab" id="tab-physics">
-            <i class="fas fa-magnet"></i>
-            <span data-vi="⚛️ Vật Lý Học" data-en="⚛️ Physics Lab">⚛️ Vật Lý Học</span>
+      <!-- Sandbox Interactive Card -->
+      <div class="sandbox-box" data-animate>
+        <!-- Sandbox Top Navigation Bar -->
+        <div class="sandbox-header">
+          <div class="sandbox-header-title">
+            <i class="fas fa-flask" style="color:var(--cyan);font-size:1.1rem;" aria-hidden="true"></i>
+            <span data-vi="VLAB Interactive Concept Simulator" data-en="VLAB Interactive Concept Simulator">VLAB Interactive Concept Simulator</span>
+          </div>
+
+          <div class="sandbox-tabs" role="tablist" aria-label="Chọn môn học thí nghiệm">
+            <button class="sandbox-tab active" data-lab="physics" role="tab" aria-selected="true">
+              <span>⚛️</span> <span data-vi="Vật Lý (Physics)" data-en="Physics">Vật Lý (Physics)</span>
+            </button>
+            <button class="sandbox-tab" data-lab="chemistry" role="tab" aria-selected="false">
+              <span>🧪</span> <span data-vi="Hóa Học (Chemistry)" data-en="Chemistry">Hóa Học (Chemistry)</span>
+            </button>
+            <button class="sandbox-tab" data-lab="biology" role="tab" aria-selected="false">
+              <span>🔬</span> <span data-vi="Sinh Học (Biology)" data-en="Biology">Sinh Học (Biology)</span>
+            </button>
+            <button class="sandbox-tab" data-lab="engineering" role="tab" aria-selected="false">
+              <span>⚙️</span> <span data-vi="Kỹ Thuật (Logic Gate)" data-en="Engineering">Kỹ Thuật (Logic Gate)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Sandbox Body (Canvas Viewport + Controls Panel) -->
+        <div class="sandbox-body">
+          <div class="sandbox-canvas-wrap">
+            <canvas id="sandbox-canvas" aria-label="Khung mô phỏng tương tác"></canvas>
+            <div class="sandbox-hud" aria-hidden="true">
+              <i class="fas fa-atom"></i> <span id="sandbox-hud-text">REAL-TIME PHYSICS ENGINE</span>
+            </div>
+          </div>
+
+          <div class="sandbox-panel">
+            <div>
+              <div class="sandbox-panel-title" id="sandbox-panel-title">Mô phỏng Con lắc đơn (Harmonic Pendulum)</div>
+              <div class="sandbox-panel-desc" id="sandbox-panel-desc">Kéo con lắc hoặc điều chỉnh chiều dài dây (L) và gia tốc trọng trường (g) để tính chu kỳ dao động T = 2π√(L/g).</div>
+              
+              <!-- Dynamic Controls Injection Area -->
+              <div id="sandbox-controls"></div>
+            </div>
+
+            <!-- Dynamic Scientific Metric Display -->
+            <div>
+              <div class="sandbox-metric-label" style="font-size:0.75rem; color:var(--text-tertiary); margin-bottom:6px;" data-vi="KẾT QUẢ TÍNH TOÁN KHOA HỌC:" data-en="SCIENTIFIC COMPUTATION:">KẾT QUẢ TÍNH TOÁN KHOA HỌC:</div>
+              <div class="sandbox-metric" id="sandbox-metric" aria-live="polite">Ready...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sandbox Clarification Alert -->
+      <div style="margin-top:16px; display:flex; align-items:center; justify-content:center; gap:8px; font-size:0.82rem; color:var(--text-tertiary); text-align:center;">
+        <i class="fas fa-circle-info" style="color:var(--cyan);"></i>
+        <span data-vi="Lưu ý: Sandbox web là bản mô phỏng tương tác ý niệm. Bản trải nghiệm nhập vai VR đầy đủ chạy trên Unity XR với tay cầm ESP32." data-en="Note: This Web sandbox is a 2D/3D concept demonstration. The full immersive VR lab runs on Unity XR paired with the ESP32 motion controller.">Lưu ý: Sandbox web là bản mô phỏng tương tác ý niệm. Bản trải nghiệm nhập vai VR đầy đủ chạy trên Unity XR với tay cầm ESP32.</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       6. VERIFIED PROTOTYPE & TRUTHFUL STATUS MATRIX
+       ═══════════════════════════════════════════════════ -->
+  <section class="section section--alt" id="status">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label" data-animate><span data-vi="Minh bạch kỹ thuật" data-en="Engineering Evidence">Minh bạch kỹ thuật</span></div>
+        <h2 class="section-title" data-animate data-vi="Hiện trạng phát triển & Dữ liệu thực nghiệm." data-en="Verified prototype status & empirical data.">Hiện trạng phát triển & Dữ liệu thực nghiệm.</h2>
+        <p class="section-subtitle" data-animate data-vi="Báo cáo trung thực về những gì đội ngũ đã xây dựng, kiểm chứng thành công và những phần đang tiếp tục thử nghiệm." data-en="A transparent report of what has been verified today versus what remains under active testing.">Báo cáo trung thực về những gì đội ngũ đã xây dựng, kiểm chứng thành công và những phần đang tiếp tục thử nghiệm.</p>
+      </div>
+
+      <!-- Public Status Matrix Table -->
+      <div class="matrix-card" data-animate>
+        <div class="matrix-card-header">
+          <h3 data-vi="Mô hình trạng thái các phân hệ VLAB (Truthful Status Model)" data-en="VLAB Truthful Subsystem Status Model">Mô hình trạng thái các phân hệ VLAB (Truthful Status Model)</h3>
+          <p data-vi="Thông tin được cập nhật theo tiến độ thực tế của Đội Ngựa Mán — THPT Chuyên Cao Bằng." data-en="Status updated according to actual engineering progress of Ngựa Mán Team.">Thông tin được cập nhật theo tiến độ thực tế của Đội Ngựa Mán — THPT Chuyên Cao Bằng.</p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="clean-table">
+            <thead>
+              <tr>
+                <th data-vi="Phân hệ / Module" data-en="Subsystem / Module">Phân hệ / Module</th>
+                <th data-vi="Trạng thái công bố" data-en="Public Status">Trạng thái công bố</th>
+                <th data-vi="Kết quả đã kiểm chứng" data-en="Verified Today">Kết quả đã kiểm chứng</th>
+                <th data-vi="Nội dung đang tiếp tục hoàn thiện" data-en="Next Engineering Focus">Nội dung đang tiếp tục hoàn thiện</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong style="color:var(--text-primary);" data-vi="Phòng thí nghiệm Vật Lý (PhysicsLab Unity XR)" data-en="PhysicsLab (Unity XR Engine)">Phòng thí nghiệm Vật Lý (PhysicsLab Unity XR)</strong></td>
+                <td><span class="badge badge--prototype" data-vi="Nguyên mẫu đang phát triển" data-en="Prototype under dev">Nguyên mẫu đang phát triển</span></td>
+                <td data-vi="Xây dựng nền tảng Unity 6 XR, dựng cảnh phòng lab 3D và các mô hình con lắc, ném xiên" data-en="Unity 6 XR foundation, 3D lab environment, pendulum & projectile mechanics">Xây dựng nền tảng Unity 6 XR, dựng cảnh phòng lab 3D và các mô hình con lắc, ném xiên</td>
+                <td data-vi="Tối ưu hiệu năng dựng hình 60 FPS trên điện thoại Android cấu hình cơ bản" data-en="Optimizing 60 FPS rendering on budget Android smartphones">Tối ưu hiệu năng dựng hình 60 FPS trên điện thoại Android cấu hình cơ bản</td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--text-primary);" data-vi="Mô phỏng Web tương tác (Web Sandbox)" data-en="Interactive Web Sandbox">Mô phỏng Web tương tác (Web Sandbox)</strong></td>
+                <td><span class="badge badge--demo" data-vi="Sẵn sàng trải nghiệm" data-en="Live Demo Available">Sẵn sàng trải nghiệm</span></td>
+                <td data-vi="Hoạt động trực tiếp trên trình duyệt với 4 module Vật lý, Hóa học, Sinh học, Kỹ thuật" data-en="Runs directly in browser across Physics, Chem, Bio, and Engineering">Hoạt động trực tiếp trên trình duyệt với 4 module Vật lý, Hóa học, Sinh học, Kỹ thuật</td>
+                <td data-vi="Bổ sung thêm các bài thực hành theo khung chương trình GDPT 2018" data-en="Adding more curriculum-aligned experiments">Bổ sung thêm các bài thực hành theo khung chương trình GDPT 2018</td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--text-primary);" data-vi="Phòng Hóa, Sinh & Mạch điện trên VR" data-en="VR Chemistry, Biology & Circuits">Phòng Hóa, Sinh & Mạch điện trên VR</strong></td>
+                <td><span class="badge badge--planned" data-vi="Kế hoạch mở rộng VR" data-en="Planned for VR">Kế hoạch mở rộng VR</span></td>
+                <td data-vi="Đã có kịch bản sư phạm và bản mô phỏng ý niệm trên Web" data-en="Pedagogical scripts and 2D/3D Web concept models verified">Đã có kịch bản sư phạm và bản mô phỏng ý niệm trên Web</td>
+                <td data-vi="Chuyển đổi tài nguyên 3D vào Unity XR sau khi hoàn thiện PhysicsLab" data-en="Porting 3D assets into Unity XR following PhysicsLab completion">Chuyển đổi tài nguyên 3D vào Unity XR sau khi hoàn thiện PhysicsLab</td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--text-primary);" data-vi="Tay cầm ESP32 + Cảm biến IMU" data-en="ESP32 Controller + IMU">Tay cầm ESP32 + Cảm biến IMU</strong></td>
+                <td><span class="badge badge--prototype" data-vi="Kiến trúc nguyên mẫu" data-en="Prototype Architecture">Kiến trúc nguyên mẫu</span></td>
+                <td data-vi="Đọc dữ liệu cảm biến MPU9250/MPU6050, kết nối truyền nhận BLE 4.2 thử nghiệm" data-en="IMU raw data reading, experimental BLE 4.2 transmission pipeline">Đọc dữ liệu cảm biến MPU9250/MPU6050, kết nối truyền nhận BLE 4.2 thử nghiệm</td>
+                <td data-vi="Đánh giá thuật toán Sensor Fusion (Mahony/Kalman) nhằm giảm hiện tượng trôi góc (drift)" data-en="Evaluating Mahony/Kalman sensor fusion to mitigate angular drift">Đánh giá thuật toán Sensor Fusion (Mahony/Kalman) nhằm giảm hiện tượng trôi góc (drift)</td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--text-primary);" data-vi="Ứng dụng cài đặt (Android APK)" data-en="Android APK Deployment">Ứng dụng cài đặt (Android APK)</strong></td>
+                <td><span class="badge badge--planned" data-vi="Thử nghiệm nội bộ" data-en="Internal Testing">Thử nghiệm nội bộ</span></td>
+                <td data-vi="Build và chạy thử nghiệm trực tiếp trên máy test nội bộ của đội" data-en="Internal test builds deployed to team testing devices">Build và chạy thử nghiệm trực tiếp trên máy test nội bộ của đội</td>
+                <td data-vi="Chuẩn bị gói cài đặt APK phục vụ thử nghiệm tại lớp học (Pilot testing)" data-en="Packaging standalone APK for pilot classroom testing">Chuẩn bị gói cài đặt APK phục vụ thử nghiệm tại lớp học (Pilot testing)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Realistic DIY Hardware BOM Table -->
+      <div class="matrix-card" data-animate>
+        <div class="matrix-card-header">
+          <h3 data-vi="Bảng ước tính chi phí linh kiện tự chế (~$20)" data-en="Estimated DIY Hardware BOM & Cost Breakdown (~$20)">Bảng ước tính chi phí linh kiện tự chế (~$20)</h3>
+          <p data-vi="Giá tham khảo trên thị trường linh kiện điện tử Việt Nam cho một bộ thiết bị học sinh tự lắp ráp." data-en="Market reference pricing in Vietnam for a single student DIY assembly kit.">Giá tham khảo trên thị trường linh kiện điện tử Việt Nam cho một bộ thiết bị học sinh tự lắp ráp.</p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="clean-table">
+            <thead>
+              <tr>
+                <th data-vi="Linh kiện" data-en="Component">Linh kiện</th>
+                <th data-vi="Thông số kỹ thuật" data-en="Specification">Thông số kỹ thuật</th>
+                <th data-vi="Vai trò trong hệ thống" data-en="System Function">Vai trò trong hệ thống</th>
+                <th data-vi="Chi phí ước tính" data-en="Estimated Cost">Chi phí ước tính</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>ESP32 DevKit V1</strong></td>
+                <td>Dual-core 240MHz, Bluetooth LE 4.2 / Wi-Fi</td>
+                <td data-vi="Xử lý cảm biến và đóng gói dữ liệu truyền BLE" data-en="Sensor processing & BLE packet transmission">Xử lý cảm biến và đóng gói dữ liệu truyền BLE</td>
+                <td>~90.000 VNĐ (~$3.80)</td>
+              </tr>
+              <tr>
+                <td><strong>Module IMU (MPU9250 / MPU6050)</strong></td>
+                <td>Cảm biến 6 trục / 9 trục (Gia tốc + Con quay hồi chuyển)</td>
+                <td data-vi="Đo góc nghiêng và chuyển động xoay cổ tay" data-en="Measures tilt angles and rotational hand motion">Đo góc nghiêng và chuyển động xoay cổ tay</td>
+                <td>~75.000 VNĐ (~$3.10)</td>
+              </tr>
+              <tr>
+                <td><strong>Nút bấm & Joystick nhỏ</strong></td>
+                <td>Push buttons + Micro switch</td>
+                <td data-vi="Thao tác gắp vật thể, bóp cò và chọn menu" data-en="Grab objects, trigger actions, menu select">Thao tác gắp vật thể, bóp cò và chọn menu</td>
+                <td>~25.000 VNĐ (~$1.00)</td>
+              </tr>
+              <tr>
+                <td><strong>Pin sạc Li-Ion / LiPo 3.7V</strong></td>
+                <td>Dung lượng ~500–800mAh + Mạch sạc TP4056</td>
+                <td data-vi="Cấp nguồn di động không dây cho tay cầm" data-en="Wireless power supply for controller">Cấp nguồn di động không dây cho tay cầm</td>
+                <td>~50.000 VNĐ (~$2.10)</td>
+              </tr>
+              <tr>
+                <td><strong>Vỏ tay cầm in 3D (Nhựa PLA)</strong></td>
+                <td>Thiết kế công thái học gọn nhẹ</td>
+                <td data-vi="Cố định mạch điện và tạo cảm giác cầm nắm thoải mái" data-en="Protects PCB and provides ergonomic grip">Cố định mạch điện và tạo cảm giác cầm nắm thoải mái</td>
+                <td>~45.000 VNĐ (~$1.90)</td>
+              </tr>
+              <tr>
+                <td><strong>Kính VR gài điện thoại (VR Box / Cardboard)</strong></td>
+                <td>Thấu kính phi cầu đường kính 40mm</td>
+                <td data-vi="Gài điện thoại tạo hiệu ứng thị giác 3D nổi" data-en="Slots smartphone for stereoscopic 3D vision">Gài điện thoại tạo hiệu ứng thị giác 3D nổi</td>
+                <td>~95.000 VNĐ (~$4.00)</td>
+              </tr>
+              <tr class="highlight">
+                <td colspan="3"><strong data-vi="TỔNG CHI PHÍ BỘ PHẦN CỨNG (Không bao gồm điện thoại)" data-en="TOTAL HARDWARE KIT COST (Excluding Smartphone)">TỔNG CHI PHÍ BỘ PHẦN CỨNG (Không bao gồm điện thoại)</strong></td>
+                <td><strong>~380.000 VNĐ (~$15.90)</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       7. ROADMAP & OPEN DEVELOPMENT
+       ═══════════════════════════════════════════════════ -->
+  <section class="section" id="roadmap">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label" data-animate><span data-vi="Lộ trình" data-en="Roadmap">Lộ trình</span></div>
+        <h2 class="section-title" data-animate data-vi="Kế hoạch phát triển từng bước." data-en="Step-by-step development roadmap.">Kế hoạch phát triển từng bước.</h2>
+        <p class="section-subtitle" data-animate data-vi="Lộ trình minh bạch từ khâu hoàn thiện nguyên mẫu cốt lõi đến thử nghiệm thực tế tại các lớp học THPT." data-en="A transparent milestone progression from core prototype validation to classroom pilot testing.">Lộ trình minh bạch từ khâu hoàn thiện nguyên mẫu cốt lõi đến thử nghiệm thực tế tại các lớp học THPT.</p>
+      </div>
+
+      <div class="roadmap-timeline" data-animate>
+        <!-- Phase 1 -->
+        <div class="roadmap-item">
+          <div class="roadmap-dot" aria-hidden="true"></div>
+          <div class="roadmap-item-header">
+            <h3 data-vi="Giai đoạn 1: Hoàn thiện Nguyên mẫu Cốt lõi (Core Prototype)" data-en="Phase 1: Core Prototype Validation">Giai đoạn 1: Hoàn thiện Nguyên mẫu Cốt lõi (Core Prototype)</h3>
+            <span class="badge badge--prototype" data-vi="Đang thực hiện" data-en="In Progress">Đang thực hiện</span>
+          </div>
+          <p data-vi="Hoàn thiện mã nguồn PhysicsLab trên Unity 6 XR; tinh chỉnh thuật toán lọc cảm biến IMU trên ESP32 để giảm thiểu hiện tượng trôi góc; tối ưu hóa độ trễ kết nối BLE." data-en="Finalizing PhysicsLab Unity 6 XR source; tuning ESP32 IMU sensor fusion algorithms to minimize drift; optimizing BLE latency.">Hoàn thiện mã nguồn PhysicsLab trên Unity 6 XR; tinh chỉnh thuật toán lọc cảm biến IMU trên ESP32 để giảm thiểu hiện tượng trôi góc; tối ưu hóa độ trễ kết nối BLE.</p>
+        </div>
+
+        <!-- Phase 2 -->
+        <div class="roadmap-item">
+          <div class="roadmap-dot" aria-hidden="true"></div>
+          <div class="roadmap-item-header">
+            <h3 data-vi="Giai đoạn 2: Thử nghiệm Lớp học (Classroom Pilot Testing)" data-en="Phase 2: Classroom Pilot Testing">Giai đoạn 2: Thử nghiệm Lớp học (Classroom Pilot Testing)</h3>
+            <span class="badge badge--planned" data-vi="Kế hoạch tiếp theo" data-en="Next Milestone">Kế hoạch tiếp theo</span>
+          </div>
+          <p data-vi="Tổ chức thử nghiệm nội bộ với nhóm học sinh THPT Chuyên Cao Bằng trong các tiết thực hành Vật lý; thu thập phản hồi của giáo viên về mức độ phù hợp bài giảng và tính dễ sử dụng." data-en="Conducting internal pilot sessions with students at Cao Bằng Gifted High School during physics practice; collecting teacher feedback on curriculum fit.">Tổ chức thử nghiệm nội bộ với nhóm học sinh THPT Chuyên Cao Bằng trong các tiết thực hành Vật lý; thu thập phản hồi của giáo viên về mức độ phù hợp bài giảng và tính dễ sử dụng.</p>
+        </div>
+
+        <!-- Phase 3 -->
+        <div class="roadmap-item roadmap-item--future">
+          <div class="roadmap-dot" aria-hidden="true"></div>
+          <div class="roadmap-item-header">
+            <h3 data-vi="Giai đoạn 3: Mở rộng Hóa học, Sinh học & Dashboard Giáo viên" data-en="Phase 3: Multi-Subject Expansion & Teacher Portal">Giai đoạn 3: Mở rộng Hóa học, Sinh học & Dashboard Giáo viên</h3>
+            <span class="badge badge--planned" data-vi="Tương lai" data-en="Future">Tương lai</span>
+          </div>
+          <p data-vi="Chuyển đổi toàn diện các bài thực hành Hóa học (chuẩn độ axit–bazơ, mô hình phân tử 3D) và Sinh học (giải phẫu tế bào) lên VR; xây dựng cổng quản lý giao bài cho giáo viên." data-en="Porting full Chemistry (titration, 3D molecules) and Biology (cellular anatomy) to VR; developing classroom assignment dashboard.">Chuyển đổi toàn diện các bài thực hành Hóa học (chuẩn độ axit–bazơ, mô hình phân tử 3D) và Sinh học (giải phẫu tế bào) lên VR; xây dựng cổng quản lý giao bài cho giáo viên.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       8. FAQ & EDUCATIONAL PHILOSOPHY
+       ═══════════════════════════════════════════════════ -->
+  <section class="section section--alt" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label" data-animate><span data-vi="Giải đáp thắc mắc" data-en="Frequently Asked Questions">Giải đáp thắc mắc</span></div>
+        <h2 class="section-title" data-animate data-vi="Câu hỏi thường gặp về VLAB." data-en="Frequently asked questions.">Câu hỏi thường gặp về VLAB.</h2>
+        <p class="section-subtitle" data-animate data-vi="Những thông tin trọng tâm giúp ban giám khảo và thầy cô hiểu rõ hơn về định hướng dự án." data-en="Core information explaining our product scope, engineering decisions, and pedagogical positioning.">Những thông tin trọng tâm giúp ban giám khảo và thầy cô hiểu rõ hơn về định hướng dự án.</p>
+      </div>
+
+      <div class="faq-list" data-animate>
+        <!-- FAQ 1 -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span data-vi="VLAB có thay thế hoàn toàn phòng thí nghiệm vật lý thật không?" data-en="Does VLAB completely replace physical laboratories?">VLAB có thay thế hoàn toàn phòng thí nghiệm vật lý thật không?</span>
+            <i class="fas fa-chevron-down faq-chevron" aria-hidden="true"></i>
           </button>
-          <button class="sandbox-tab" data-lab="chemistry" role="tab" id="tab-chemistry">
-            <i class="fas fa-vial"></i>
-            <span data-vi="🧪 Hóa Học Ảo" data-en="🧪 Chemistry Lab">🧪 Hóa Học Ảo</span>
+          <div class="faq-answer">
+            <div class="faq-answer-inner" data-vi="Không. VLAB được định vị là công cụ bổ trợ và chuẩn bị trước thực hành. Phòng thí nghiệm thật luôn có giá trị không thể thay thế về kỹ năng thao tác tay, rèn luyện ý thức an toàn và cảm giác dụng cụ thực tế. VLAB giúp học sinh hiểu bản chất hiện tượng trước khi vào phòng lab thật, và cho phép ôn tập, thử sai vô số lần sau giờ học." data-en="No. VLAB is intentionally positioned as a practical supplement and pre-lab preparation tool. Physical laboratories possess irreplaceable pedagogical value in tactile tool handling and physical safety discipline. VLAB empowers students to grasp underlying principles prior to entering real labs, and enables unlimited safe trial-and-error afterwards.">Không. VLAB được định vị là công cụ bổ trợ và chuẩn bị trước thực hành. Phòng thí nghiệm thật luôn có giá trị không thể thay thế về kỹ năng thao tác tay, rèn luyện ý thức an toàn và cảm giác dụng cụ thực tế. VLAB giúp học sinh hiểu bản chất hiện tượng trước khi vào phòng lab thật, và cho phép ôn tập, thử sai vô số lần sau giờ học.</div>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span data-vi="Cần những thiết bị gì để bắt đầu trải nghiệm VLAB?" data-en="What hardware is required to use VLAB?">Cần những thiết bị gì để bắt đầu trải nghiệm VLAB?</span>
+            <i class="fas fa-chevron-down faq-chevron" aria-hidden="true"></i>
           </button>
-          <button class="sandbox-tab" data-lab="biology" role="tab" id="tab-biology">
-            <i class="fas fa-dna"></i>
-            <span data-vi="🔬 Kính Hiển Vi Sinh" data-en="🔬 Bio Microscopy">🔬 Kính Hiển Vi Sinh</span>
+          <div class="faq-answer">
+            <div class="faq-answer-inner" data-vi="Học sinh chỉ cần: (1) Một chiếc điện thoại thông minh Android phổ thông; (2) Một kính VR gài điện thoại giá rẻ (~95.000 VNĐ); (3) Một bộ tay cầm điều khiển ESP32 tự chế với linh kiện khoảng 285.000 VNĐ. Tổng chi phí phần cứng tự làm dưới 400.000 VNĐ (~$16–$20)." data-en="Students require: (1) A standard Android smartphone; (2) An affordable phone-slot VR headset (~$4); (3) A DIY ESP32 controller kit built with ~$12 in components. Total hardware assembly cost is under ~$20 (excluding phone).">Học sinh chỉ cần: (1) Một chiếc điện thoại thông minh Android phổ thông; (2) Một kính VR gài điện thoại giá rẻ (~95.000 VNĐ); (3) Một bộ tay cầm điều khiển ESP32 tự chế với linh kiện khoảng 285.000 VNĐ. Tổng chi phí phần cứng tự làm dưới 400.000 VNĐ (~$16–$20).</div>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span data-vi="Nhóm xử lý vấn đề trôi góc (sensor drift) của cảm biến IMU như thế nào?" data-en="How does the team mitigate IMU sensor drift?">Nhóm xử lý vấn đề trôi góc (sensor drift) của cảm biến IMU như thế nào?</span>
+            <i class="fas fa-chevron-down faq-chevron" aria-hidden="true"></i>
           </button>
-          <button class="sandbox-tab" data-lab="engineering" role="tab" id="tab-engineering">
-            <i class="fas fa-bolt"></i>
-            <span data-vi="⚡ Kỹ Thuật Điện Tử" data-en="⚡ Electronics Lab">⚡ Kỹ Thuật Điện Tử</span>
+          <div class="faq-answer">
+            <div class="faq-answer-inner" data-vi="Cảm biến con quay hồi chuyển (gyroscope) giá rẻ thường bị tích lũy sai số theo thời gian. Đội ngũ đang thử nghiệm kết hợp thuật toán lọc bù (Complementary Filter) và bộ lọc Mahony/Kalman để hòa trộn dữ liệu gia tốc kế (trọng lực làm mốc chuẩn) và từ kế (la bàn điện tử) nhằm bù trừ sai số trôi góc liên tục trên vi điều khiển ESP32." data-en="Affordable gyroscopes naturally accumulate drift over time. The team is implementing and evaluating Complementary and Mahony/Kalman sensor fusion filters on the ESP32 to fuse accelerometer gravity references and magnetometer compass data to dynamically correct angular drift.">Cảm biến con quay hồi chuyển (gyroscope) giá rẻ thường bị tích lũy sai số theo thời gian. Đội ngũ đang thử nghiệm kết hợp thuật toán lọc bù (Complementary Filter) và bộ lọc Mahony/Kalman để hòa trộn dữ liệu gia tốc kế (trọng lực làm mốc chuẩn) và từ kế (la bàn điện tử) nhằm bù trừ sai số trôi góc liên tục trên vi điều khiển ESP32.</div>
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span data-vi="Dự án có được mã nguồn mở (Open Source) không?" data-en="Is the project open-source?">Dự án có được mã nguồn mở (Open Source) không?</span>
+            <i class="fas fa-chevron-down faq-chevron" aria-hidden="true"></i>
           </button>
-        </div>
-
-        <div class="sandbox-actions-strip">
-          <div class="sandbox-speed-control">
-            <span class="speed-label" data-vi="Tốc độ:" data-en="Speed:">Tốc độ:</span>
-            <button class="speed-btn active" data-speed="1">1x</button>
-            <button class="speed-btn" data-speed="0.5">0.5x</button>
-            <button class="speed-btn" data-speed="2">2x</button>
-          </div>
-          <button class="sandbox-btn-icon" id="sandbox-btn-sound" title="Bật/Tắt hiệu ứng âm thanh">
-            <i class="fas fa-volume-high" id="sound-icon"></i>
-          </button>
-          <button class="sandbox-btn-icon" id="sandbox-btn-pause" title="Tạm dừng / Tiếp tục">
-            <i class="fas fa-pause" id="pause-icon"></i>
-          </button>
-          <button class="sandbox-btn-icon" id="sandbox-btn-reset" title="Đặt lại thí nghiệm">
-            <i class="fas fa-rotate-right"></i>
-          </button>
-        </div>
-      </div>
-
-      <!-- Main Sandbox Body -->
-      <div class="sandbox-grid">
-        <!-- Interactive Viewport Canvas -->
-        <div class="sandbox-viewport" id="sandbox-viewport">
-          <canvas id="sandbox-canvas"></canvas>
-          
-          <!-- Live Telemetry Overlays -->
-          <div class="viewport-hud-top">
-            <div class="hud-chip" id="hud-mode-badge">
-              <span class="hud-pulse"></span>
-              <span id="hud-mode-text">PHYSICS ENGINE · VERLET RK4</span>
-            </div>
-            <div class="hud-chip hud-chip--fps">
-              <i class="fas fa-gauge"></i> <span id="hud-fps">60 FPS</span>
-            </div>
-          </div>
-
-          <div class="viewport-hud-bottom">
-            <div class="hud-instruction" id="hud-instruction">
-              <i class="fas fa-hand-pointer"></i> <span>Kéo thả quả cầu hoặc điều chỉnh thanh trượt bên phải</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Sidebar Control Deck -->
-        <div class="sandbox-sidebar">
-          <!-- Sub-mode Selector Pills -->
-          <div class="sandbox-submode-wrap" id="sandbox-submodes">
-            <!-- Dynamically populated per active lab -->
-          </div>
-
-          <!-- Description & Formula Card -->
-          <div class="sandbox-info-card">
-            <h3 class="sandbox-panel-title" id="sandbox-panel-title">Mô phỏng Dao động Điều hòa</h3>
-            <p class="sandbox-panel-desc" id="sandbox-panel-desc">Trực quan hóa chuyển động của con lắc đơn và con lắc lò xo với cơ chế bảo toàn cơ năng.</p>
-            <div class="sandbox-formula-box" id="sandbox-formula-box">
-              <code>T = 2π√(L/g) · E = Eđ + Et = hằng số</code>
-            </div>
-          </div>
-
-          <!-- Dynamic Sliders / Buttons Container -->
-          <div class="sandbox-controls-deck" id="sandbox-controls">
-            <!-- Sliders dynamically generated in JS -->
-          </div>
-
-          <!-- Live Graphs & Output Telemetry -->
-          <div class="sandbox-telemetry-panel">
-            <div class="telemetry-header">
-              <span class="telemetry-title"><i class="fas fa-chart-line"></i> <span id="telemetry-graph-title">Biểu đồ cơ năng thời gian thực</span></span>
-              <span class="telemetry-badge" id="telemetry-badge">ONLINE</span>
-            </div>
-            <div class="telemetry-canvas-wrap">
-              <canvas id="telemetry-graph-canvas"></canvas>
-            </div>
-            <div class="telemetry-metrics-grid" id="telemetry-metrics">
-              <!-- Metrics filled by JS -->
-            </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner" data-vi="Có. VLAB được phát triển theo giấy phép nguồn mở MIT License. Toàn bộ sơ đồ nối dây phần cứng, mô hình 3D vỏ tay cầm (.STL) và mã nguồn firmware ESP32 được công khai để mọi trường học và học sinh có thể tự chế tạo và học tập." data-en="Yes. VLAB is released under the open-source MIT License. Hardware wiring diagrams, 3D enclosure STL models, and ESP32 firmware are publicly shared to enable any school or student club to build and learn freely.">Có. VLAB được phát triển theo giấy phép nguồn mở MIT License. Toàn bộ sơ đồ nối dây phần cứng, mô hình 3D vỏ tay cầm (.STL) và mã nguồn firmware ESP32 được công khai để mọi trường học và học sinh có thể tự chế tạo và học tập.</div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</main>
 
 <!-- ═══════════════════════════════════════════════════
-     WHY VLAB — Problem vs Breakthrough Solution (Bento Grid)
-     ═══════════════════════════════════════════════════ -->
-<section class="section" id="why">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label" data-animate><span data-vi="Tính Cấp Thiết" data-en="The Core Problem">Tính Cấp Thiết</span></div>
-      <h2 class="section-title" data-animate data-vi-html="Dân Chủ Hóa Cơ Hội<br><span class='text-gradient'>Thực Hành Khoa Học Cho Mọi Học Sinh.</span>" data-en-html="Democratizing Hands-On<br><span class='text-gradient'>Science Practice For Every Student.</span>">
-        Dân Chủ Hóa Cơ Hội<br><span class="text-gradient">Thực Hành Khoa Học Cho Mọi Học Sinh.</span>
-      </h2>
-      <p class="section-subtitle" data-animate data-vi="Khoảng cách cơ sở vật chất giữa các vùng miền và chi phí bảo dưỡng đắt đỏ khiến nhiều thế hệ học sinh chỉ được 'học chay' lý thuyết mà không có cơ hội chạm tay vào thí nghiệm." data-en="Inequity in lab facilities and high consumable costs prevent millions of students from getting hands-on scientific experimentation.">
-        Khoảng cách cơ sở vật chất giữa các vùng miền và chi phí bảo dưỡng đắt đỏ khiến nhiều thế hệ học sinh chỉ được "học chay" lý thuyết mà không có cơ hội chạm tay vào thí nghiệm.
-      </p>
-    </div>
-
-    <!-- Bento Grid -->
-    <div class="bento-grid" data-animate>
-      <!-- Problem 1 -->
-      <div class="bento-card bento-card--accent-red">
-        <div class="bento-card-top">
-          <div class="bento-icon bento-icon--red"><i class="fas fa-school-circle-xmark"></i></div>
-          <span class="bento-tag bento-tag--problem" data-vi="Thách thức #1" data-en="Challenge #1">Thách thức #1</span>
-        </div>
-        <h3 data-vi="Thiếu trang thiết bị phòng lab" data-en="Lack of physical laboratory equipment">Thiếu trang thiết bị phòng lab</h3>
-        <p data-vi="Nhiều trường THPT ở vùng sâu, vùng xa hoàn toàn không có phòng thí nghiệm tiêu chuẩn, hoặc dụng cụ cũ hỏng không đủ cho học sinh thực hành." data-en="Many schools in rural and highland areas lack functional lab equipment for students to practice.">
-          Nhiều trường THPT ở vùng sâu, vùng xa hoàn toàn không có phòng thí nghiệm tiêu chuẩn, hoặc dụng cụ cũ hỏng không đủ cho học sinh thực hành.
-        </p>
-      </div>
-
-      <!-- Problem 2 -->
-      <div class="bento-card bento-card--accent-orange">
-        <div class="bento-card-top">
-          <div class="bento-icon bento-icon--orange"><i class="fas fa-money-bill-transfer"></i></div>
-          <span class="bento-tag bento-tag--problem" data-vi="Thách thức #2" data-en="Challenge #2">Thách thức #2</span>
-        </div>
-        <h3 data-vi="Chi phí hóa chất & bảo dưỡng cao" data-en="High chemical & maintenance costs">Chi phí hóa chất & bảo dưỡng cao</h3>
-        <p data-vi="Hóa chất tinh khiết và linh kiện quang học đắt đỏ tiêu tốn ngân sách định kỳ, khiến trường học hạn chế số buổi thực hành thực tế." data-en="High recurring consumable costs severely limit the number of practical experiment sessions.">
-          Hóa chất tinh khiết và linh kiện quang học đắt đỏ tiêu tốn ngân sách định kỳ, khiến trường học hạn chế số buổi thực hành thực tế.
-        </p>
-      </div>
-
-      <!-- Problem 3 -->
-      <div class="bento-card bento-card--accent-amber">
-        <div class="bento-card-top">
-          <div class="bento-icon bento-icon--amber"><i class="fas fa-triangle-exclamation"></i></div>
-          <span class="bento-tag bento-tag--problem" data-vi="Thách thức #3" data-en="Challenge #3">Thách thức #3</span>
-        </div>
-        <h3 data-vi="Rủi ro an toàn & cháy nổ" data-en="Physical safety & chemical hazards">Rủi ro an toàn & cháy nổ</h3>
-        <p data-vi="Axit đặc, kim loại kiềm, hoặc nguồn điện cao thế tiềm ẩn nguy cơ chấn thương nếu học sinh thao tác sai sót mà không có kèm cặp 1-1." data-en="Hazardous chemicals and high-voltage power present severe safety risks for unsupervised learners.">
-          Axit đặc, kim loại kiềm, hoặc nguồn điện cao thế tiềm ẩn nguy cơ chấn thương nếu học sinh thao tác sai sót mà không có kèm cặp 1-1.
-        </p>
-      </div>
-
-      <!-- Breakthrough Solution Banner Card -->
-      <div class="bento-card bento-card--full bento-card--breakthrough">
-        <div class="breakthrough-glow"></div>
-        <div class="breakthrough-content">
-          <div class="breakthrough-badge">
-            <i class="fas fa-sparkles"></i>
-            <span data-vi="Đột phá công nghệ VLAB" data-en="VLAB Innovation Breakthrough">Đột phá công nghệ VLAB</span>
-          </div>
-          <h3 data-vi-html="Giải pháp VLAB: Biến Mọi Lớp Học Thành Phòng Lab Chuẩn Quốc Tế Với Giá &lt;$20" data-en-html="VLAB Solution: Turning Any Classroom into a World-Class Lab for &lt;$20">
-            Giải pháp VLAB: Biến Mọi Lớp Học Thành Phòng Lab Chuẩn Quốc Tế Với Giá &lt;$20
-          </h3>
-          <p data-vi="Kết hợp phần cứng ESP32 giá rẻ, thuật toán lọc Kalman khử nhiễu chuyển động và engine đồ họa Unity 6 XR trên smartphone, VLAB đem lại cảm giác tự tay cầm nắm, rót hóa chất, điều chỉnh mạch điện chân thực 100% với chi phí tối thiểu." data-en="Combining affordable ESP32 microcontrollers, Kalman drift-reduction algorithms, and Unity 6 XR on mobile, VLAB delivers authentic tactile manipulation at negligible cost.">
-            Kết hợp phần cứng ESP32 giá rẻ, thuật toán lọc Kalman khử nhiễu chuyển động và engine đồ họa Unity 6 XR trên smartphone, VLAB đem lại cảm giác tự tay cầm nắm, rót hóa chất, điều chỉnh mạch điện chân thực 100% với chi phí tối thiểu.
-          </p>
-          <div class="breakthrough-features">
-            <div class="b-feature"><i class="fas fa-check-circle"></i> <span data-vi="Không tốn chi phí mua hóa chất lặp lại" data-en="Zero recurring consumable purchases">Không tốn chi phí mua hóa chất lặp lại</span></div>
-            <div class="b-feature"><i class="fas fa-check-circle"></i> <span data-vi="Thao tác thử sai vô hạn lần an toàn tuyệt đối" data-en="Infinite safe trial & error loops">Thao tác thử sai vô hạn lần an toàn tuyệt đối</span></div>
-            <div class="b-feature"><i class="fas fa-check-circle"></i> <span data-vi="Phù hợp 100% Chương trình GDPT 2018" data-en="Fully aligned with 2018 national curriculum">Phù hợp 100% Chương trình GDPT 2018</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     INTERACTIVE HARDWARE EXPLORER ($20 ESP32 KIT)
-     ═══════════════════════════════════════════════════ -->
-<section class="section section--alt" id="hardware">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label" data-animate><span data-vi="Bộ Phần Cứng ~$20" data-en="~$20 Hardware Kit">Bộ Phần Cứng ~$20</span></div>
-      <h2 class="section-title" data-animate data-vi="Bóc Tách Linh Kiện Tay Cầm Tự Chế VLAB" data-en="Inside the VLAB Custom Controller Kit">
-        Bóc Tách Linh Kiện Tay Cầm Tự Chế VLAB
-      </h2>
-      <p class="section-subtitle" data-animate data-vi="Thiết kế mở, tối ưu chi phí tối đa để bất kỳ trường học hay học sinh nào cũng có thể tự lắp ráp và làm chủ công nghệ." data-en="Open, highly cost-optimized design enabling any school or student to assemble and master the hardware.">
-        Thiết kế mở, tối ưu chi phí tối đa để bất kỳ trường học hay học sinh nào cũng có thể tự lắp ráp và làm chủ công nghệ.
-      </p>
-    </div>
-
-    <!-- Hardware Interactive Layout -->
-    <div class="hardware-grid" data-animate>
-      <!-- Interactive Schematic Visual -->
-      <div class="hardware-visual-card">
-        <div class="hw-chip-top">
-          <span class="hw-pulse"></span>
-          <span>VLAB ESP32 HARDWARE CONTROLLER SCHEMATIC</span>
-        </div>
-        <div class="hw-interactive-schematic" id="hw-schematic">
-          <div class="hw-node active" data-part="esp32" style="top: 35%; left: 45%;">
-            <div class="hw-pin"><i class="fas fa-microchip"></i></div>
-            <div class="hw-tooltip">ESP32 DevKit V1</div>
-          </div>
-          <div class="hw-node" data-part="imu" style="top: 25%; left: 70%;">
-            <div class="hw-pin"><i class="fas fa-compass"></i></div>
-            <div class="hw-tooltip">IMU MPU9250 9-Axis</div>
-          </div>
-          <div class="hw-node" data-part="joystick" style="top: 60%; left: 30%;">
-            <div class="hw-pin"><i class="fas fa-gamepad"></i></div>
-            <div class="hw-tooltip">Thumb Joystick & Buttons</div>
-          </div>
-          <div class="hw-node" data-part="battery" style="top: 70%; left: 65%;">
-            <div class="hw-pin"><i class="fas fa-battery-full"></i></div>
-            <div class="hw-tooltip">Li-Po Rechargeable Cell</div>
-          </div>
-          <div class="hw-node" data-part="enclosure" style="top: 45%; left: 15%;">
-            <div class="hw-pin"><i class="fas fa-cube"></i></div>
-            <div class="hw-tooltip">3D Printed Ergonomic Shell</div>
-          </div>
-          <div class="hw-node" data-part="headset" style="top: 15%; left: 30%;">
-            <div class="hw-pin"><i class="fas fa-vr-cardboard"></i></div>
-            <div class="hw-tooltip">Smartphone VR Headset Box</div>
-          </div>
-        </div>
-        <div class="hw-visual-footer">
-          <span data-vi="👉 Nhấp vào các điểm tròn linh kiện để xem thông số chi tiết" data-en="👉 Click component hot-spots to inspect technical specifications">👉 Nhấp vào các điểm tròn linh kiện để xem thông số chi tiết</span>
-        </div>
-      </div>
-
-      <!-- Component Details Card -->
-      <div class="hardware-info-card" id="hw-info-card">
-        <div class="hw-info-header">
-          <div class="hw-info-icon" id="hw-info-icon"><i class="fas fa-microchip"></i></div>
-          <div>
-            <h3 class="hw-info-title" id="hw-info-title">ESP32 DevKit V1 Microcontroller</h3>
-            <span class="hw-info-cost" id="hw-info-cost">Chi phí: ~$4.00</span>
-          </div>
-        </div>
-        <div class="hw-info-body">
-          <p class="hw-info-desc" id="hw-info-desc">
-            Trái tim xử lý của tay cầm VLAB. Trang bị vi xử lý 2 nhân 32-bit Xtensa 240MHz, tích hợp sẵn Bluetooth BLE 5.0 và WiFi, chịu trách nhiệm thu thập tín hiệu cảm biến và tính toán bộ lọc Kalman.
-          </p>
-          <div class="hw-info-specs" id="hw-info-specs">
-            <div class="hw-spec-row"><span>Xung nhịp:</span><strong>240 MHz Dual-Core</strong></div>
-            <div class="hw-spec-row"><span>Giao thức:</span><strong>BLE 5.0 Ultra-Low Latency</strong></div>
-            <div class="hw-spec-row"><span>Nguồn cấp:</span><strong>3.3V - 5V DC</strong></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Complete Hardware BOM Table -->
-    <div class="cost-table-wrap" data-animate>
-      <table class="cost-table">
-        <thead>
-          <tr>
-            <th data-vi="Linh kiện phần cứng" data-en="Hardware Component">Linh kiện phần cứng</th>
-            <th data-vi="Chi phí ước tính (VND / USD)" data-en="Estimated Cost">Chi phí ước tính (VND / USD)</th>
-            <th data-vi="Thông số & Vai trò kỹ thuật" data-en="Role & Specs">Thông số & Vai trò kỹ thuật</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>ESP32 DevKit V1</strong></td>
-            <td>~95.000đ ($4.00)</td>
-            <td data-vi="Vi điều khiển trung tâm 240MHz + Truyền BLE 5.0" data-en="Main 240MHz MCU + BLE 5.0 telemetry">Vi điều khiển trung tâm 240MHz + Truyền BLE 5.0</td>
-          </tr>
-          <tr>
-            <td><strong>Cảm biến IMU MPU9250 (9 trục)</strong></td>
-            <td>~75.000đ ($3.00)</td>
-            <td data-vi="Gia tốc 3 trục + Con quay 3 trục + La bàn từ 3 trục" data-en="3-axis Accel + 3-axis Gyro + 3-axis Magnetometer">Gia tốc 3 trục + Con quay 3 trục + La bàn từ 3 trục</td>
-          </tr>
-          <tr>
-            <td><strong>Joystick Mini & Cò bấm cảm ứng</strong></td>
-            <td>~25.000đ ($1.00)</td>
-            <td data-vi="Điều hướng không gian 3D và thao tác gắp / rót dụng cụ" data-en="3D navigation and virtual hand gripping">Điều hướng không gian 3D và thao tác gắp / rót dụng cụ</td>
-          </tr>
-          <tr>
-            <td><strong>Pin sạc Li-Ion 18650 & Mạch sạc Type-C</strong></td>
-            <td>~50.000đ ($2.00)</td>
-            <td data-vi="Thời lượng sử dụng liên tục >8 giờ thực hành" data-en="Rechargeable battery with >8 hours active usage">Thời lượng sử dụng liên tục >8 giờ thực hành</td>
-          </tr>
-          <tr>
-            <td><strong>Vỏ in 3D công thái học (Nhựa PLA)</strong></td>
-            <td>~50.000đ ($2.00)</td>
-            <td data-vi="Thiết kế vừa vặn tay cầm học sinh, chống va đập" data-en="Ergonomic custom shell printed with PLA">Thiết kế vừa vặn tay cầm học sinh, chống va đập</td>
-          </tr>
-          <tr>
-            <td><strong>Kính VR gài điện thoại (VR Box / Cardboard)</strong></td>
-            <td>~95.000đ ($4.00)</td>
-            <td data-vi="Kính quang học thị sai cho góc nhìn siêu rộng FOV 90°" data-en="Stereoscopic optical lenses with 90° FOV">Kính quang học thị sai cho góc nhìn siêu rộng FOV 90°</td>
-          </tr>
-          <tr class="cost-total">
-            <td data-vi="🎯 Tổng chi phí phần cứng trọn bộ (Không gồm điện thoại)" data-en="🎯 Total Complete Hardware Kit (Excluding Phone)">🎯 Tổng chi phí phần cứng trọn bộ (Không gồm điện thoại)</td>
-            <td>~390.000đ (~$16.00 – $20.00)</td>
-            <td data-vi="Rẻ hơn 50 lần so với kính VR chuyên dụng (Meta Quest 3 / HTC)" data-en="50x cheaper than enterprise VR headsets">Rẻ hơn 50 lần so với kính VR chuyên dụng (Meta Quest 3 / HTC)</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     4 CORE STEM LABS ECOSYSTEM
-     ═══════════════════════════════════════════════════ -->
-<section class="section" id="labs">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label" data-animate><span data-vi="Hệ Sinh Thái 4 Miền" data-en="4 Core Domains">Hệ Sinh Thái 4 Miền</span></div>
-      <h2 class="section-title" data-animate data-vi="Bốn Phòng Thí Nghiệm. Một Nền Tảng Duy Nhất." data-en="Four Laboratories. One Unified Platform.">
-        Bốn Phòng Thí Nghiệm. Một Nền Tảng Duy Nhất.
-      </h2>
-      <p class="section-subtitle" data-animate data-vi="Được xây dựng bám sát khung chuẩn giáo dục STEM THPT 2018 của Bộ Giáo dục và Đào tạo." data-en="Built specifically aligned with the High School STEM 2018 Curriculum.">
-        Được xây dựng bám sát khung chuẩn giáo dục STEM THPT 2018 của Bộ Giáo dục và Đào tạo.
-      </p>
-    </div>
-
-    <div class="labs-grid" data-animate>
-      <!-- Physics -->
-      <div class="lab-card lab-card--physics">
-        <div class="lab-card-glow"></div>
-        <div class="lab-card-header">
-          <div class="lab-icon lab-icon--physics"><i class="fas fa-magnet"></i></div>
-          <div>
-            <h3 data-vi="Phòng Vật Lý Ảo" data-en="Virtual Physics Lab">Phòng Vật Lý Ảo</h3>
-            <span class="lab-status lab-status--ready" data-vi="Đã Hoàn Thiện · Sẵn Sàng" data-en="Production Ready">Đã Hoàn Thiện · Sẵn Sàng</span>
-          </div>
-        </div>
-        <p data-vi="Mô phỏng dao động điều hòa, con lắc lò xo, ném xiên, điện xoay chiều và quang hình học. Trực quan hóa vector lực, vận tốc và thế năng/động năng trong không gian 3D." data-en="Simulating harmonic oscillation, projectile motion, AC circuits, and optics. Visualizing force vectors, velocity, and energy transfer in 3D.">
-          Mô phỏng dao động điều hòa, con lắc lò xo, ném xiên, điện xoay chiều và quang hình học. Trực quan hóa vector lực, vận tốc và thế năng/động năng trong không gian 3D.
-        </p>
-        <div class="lab-tags">
-          <span class="lab-tag">Con lắc đơn & lò xo</span>
-          <span class="lab-tag">Ném xiên & Rơi tự do</span>
-          <span class="lab-tag">Quang học lăng kính</span>
-          <span class="lab-tag">Cảm ứng điện từ</span>
-        </div>
-        <div class="lab-card-footer">
-          <a href="#sandbox-section" class="lab-link" onclick="switchSandboxTab('physics')">
-            <span data-vi="Mở mô phỏng Vật lý" data-en="Open Physics Lab">Mở mô phỏng Vật lý</span> <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- Chemistry -->
-      <div class="lab-card lab-card--chem">
-        <div class="lab-card-glow"></div>
-        <div class="lab-card-header">
-          <div class="lab-icon lab-icon--chem"><i class="fas fa-vial"></i></div>
-          <div>
-            <h3 data-vi="Phòng Hóa Học Ảo" data-en="Virtual Chemistry Lab">Phòng Hóa Học Ảo</h3>
-            <span class="lab-status lab-status--ready" data-vi="Đã Hoàn Thiện · Sẵn Sàng" data-en="Production Ready">Đã Hoàn Thiện · Sẵn Sàng</span>
-          </div>
-        </div>
-        <p data-vi="Chuẩn độ Axit - Bazơ buret tự động, mô hình phân tử 3D tương tác xoay, phản ứng sủi bọt kim loại với axit và mô phỏng cháy nổ an toàn không rủi ro." data-en="Automated acid-base titration, interactive 3D molecular models, metal reactivity gas generation, and 100% safe combustion simulations.">
-          Chuẩn độ Axit - Bazơ buret tự động, mô hình phân tử 3D tương tác xoay, phản ứng sủi bọt kim loại với axit và mô phỏng cháy nổ an toàn không rủi ro.
-        </p>
-        <div class="lab-tags">
-          <span class="lab-tag">Chuẩn độ pH</span>
-          <span class="lab-tag">Dãy điện hóa kim loại</span>
-          <span class="lab-tag">Cấu trúc phân tử 3D</span>
-          <span class="lab-tag">Nhiệt phản ứng ΔH</span>
-        </div>
-        <div class="lab-card-footer">
-          <a href="#sandbox-section" class="lab-link" onclick="switchSandboxTab('chemistry')">
-            <span data-vi="Mở mô phỏng Hóa học" data-en="Open Chemistry Lab">Mở mô phỏng Hóa học</span> <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- Biology -->
-      <div class="lab-card lab-card--bio">
-        <div class="lab-card-glow"></div>
-        <div class="lab-card-header">
-          <div class="lab-icon lab-icon--bio"><i class="fas fa-dna"></i></div>
-          <div>
-            <h3 data-vi="Phòng Sinh Học & Kính Hiển Vi" data-en="Virtual Biology Lab">Phòng Sinh Học & Kính Hiển Vi</h3>
-            <span class="lab-status lab-status--ready" data-vi="Đã Hoàn Thiện · Sẵn Sàng" data-en="Production Ready">Đã Hoàn Thiện · Sẵn Sàng</span>
-          </div>
-        </div>
-        <p data-vi="Kính hiển vi ảo quang học zoom 1000x, soi tế bào thực vật, tế bào thần kinh truyền xung điện, quan sát vi khuẩn và cấu trúc xoắn kép phân tử ADN/ARN." data-en="Virtual 1000x optical microscope, plant cell cytoplasmic streaming, neuron action potentials, bacterial flagella, and DNA double helix.">
-          Kính hiển vi ảo quang học zoom 1000x, soi tế bào thực vật, tế bào thần kinh truyền xung điện, quan sát vi khuẩn và cấu trúc xoắn kép phân tử ADN/ARN.
-        </p>
-        <div class="lab-tags">
-          <span class="lab-tag">Biểu bì tế bào thực vật</span>
-          <span class="lab-tag">Tế bào nơ-ron thần kinh</span>
-          <span class="lab-tag">Khuẩn thể Bacteriophage</span>
-          <span class="lab-tag">Cấu trúc ADN 3D</span>
-        </div>
-        <div class="lab-card-footer">
-          <a href="#sandbox-section" class="lab-link" onclick="switchSandboxTab('biology')">
-            <span data-vi="Mở kính hiển vi Sinh học" data-en="Open Bio Microscope">Mở kính hiển vi Sinh học</span> <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- Engineering -->
-      <div class="lab-card lab-card--eng">
-        <div class="lab-card-glow"></div>
-        <div class="lab-card-header">
-          <div class="lab-icon lab-icon--eng"><i class="fas fa-gears"></i></div>
-          <div>
-            <h3 data-vi="Phòng Kỹ Thuật & Điện Tử" data-en="Virtual Engineering Lab">Phòng Kỹ Thuật & Điện Tử</h3>
-            <span class="lab-status lab-status--ready" data-vi="Đã Hoàn Thiện · Sẵn Sàng" data-en="Production Ready">Đã Hoàn Thiện · Sẵn Sàng</span>
-          </div>
-        </div>
-        <p data-vi="Bàn lắp ráp mạch điện tử STEM trực quan, dòng hạt electron chuyển động theo định luật Ohm, cổng logic số AND/OR/XOR và đồng hồ đo vạn năng VOM." data-en="Interactive electronic breadboard, glowing electron currents obeying Ohm's law, digital logic gates with truth tables, and multimeters.">
-          Bàn lắp ráp mạch điện tử STEM trực quan, dòng hạt electron chuyển động theo định luật Ohm, cổng logic số AND/OR/XOR và đồng hồ đo vạn năng VOM.
-        </p>
-        <div class="lab-tags">
-          <span class="lab-tag">Mạch điện Breadboard</span>
-          <span class="lab-tag">Định luật Ohm (I=U/R)</span>
-          <span class="lab-tag">Cổng Logic AND/OR/XOR</span>
-          <span class="lab-tag">Đo Volt & Ampe</span>
-        </div>
-        <div class="lab-card-footer">
-          <a href="#sandbox-section" class="lab-link" onclick="switchSandboxTab('engineering')">
-            <span data-vi="Mở bàn kỹ thuật Điện tử" data-en="Open Electronics Lab">Mở bàn kỹ thuật Điện tử</span> <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     HOW IT WORKS — 4-Step Pipeline
-     ═══════════════════════════════════════════════════ -->
-<section class="section section--alt" id="how">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label" data-animate><span data-vi="Quy Trình Hoạt Động" data-en="How It Works">Quy Trình Hoạt Động</span></div>
-      <h2 class="section-title" data-animate data-vi="Từ Cử Chỉ Bàn Tay Đến Phản Hồi 3D Chân Thực" data-en="From Physical Motion to Real-time 3D Response">
-        Từ Cử Chỉ Bàn Tay Đến Phản Hồi 3D Chân Thực
-      </h2>
-      <p class="section-subtitle" data-animate data-vi="Đồng bộ hóa tức thì giữa phần cứng giá rẻ và engine đồ họa hiệu năng cao." data-en="Seamless instantaneous synchronization between affordable hardware and high-performance XR engine.">
-        Đồng bộ hóa tức thì giữa phần cứng giá rẻ và engine đồ họa hiệu năng cao.
-      </p>
-    </div>
-
-    <div class="steps-flow" data-animate>
-      <div class="step-item">
-        <div class="step-num">1</div>
-        <div class="step-connector"></div>
-        <h4 data-vi="Thu thập cảm biến IMU" data-en="IMU Motion Capture">Thu thập cảm biến IMU</h4>
-        <p data-vi="Cảm biến MPU9250 9 trục đọc góc quay Roll/Pitch/Yaw và gia tốc tay với tần số lấy mẫu 100Hz." data-en="9-axis MPU9250 reads orientation and hand acceleration at 100Hz sampling rate.">
-          Cảm biến MPU9250 9 trục đọc góc quay Roll/Pitch/Yaw và gia tốc tay với tần số lấy mẫu 100Hz.
-        </p>
-      </div>
-
-      <div class="step-item">
-        <div class="step-num">2</div>
-        <div class="step-connector"></div>
-        <h4 data-vi="Lọc Kalman & Truyền BLE" data-en="Kalman Filter & BLE Link">Lọc Kalman & Truyền BLE</h4>
-        <p data-vi="Firmware ESP32 lọc triệt tiêu độ trôi góc, đóng gói dữ liệu và phát sóng BLE 5.0 (độ trễ ≤ 18ms)." data-en="ESP32 firmware eliminates sensor drift and broadcasts BLE 5.0 packets with ≤ 18ms latency.">
-          Firmware ESP32 lọc triệt tiêu độ trôi góc, đóng gói dữ liệu và phát sóng BLE 5.0 (độ trễ ≤ 18ms).
-        </p>
-      </div>
-
-      <div class="step-item">
-        <div class="step-num">3</div>
-        <div class="step-connector"></div>
-        <h4 data-vi="Khớp Động Học Unity XR" data-en="Unity 6 XR Physics">Khớp Động Học Unity XR</h4>
-        <p data-vi="Engine Unity trên điện thoại giải mã tọa độ, tái hiện bàn tay ảo và tính toán va chạm vật lý thời gian thực." data-en="Mobile Unity engine decodes telemetry, animates virtual hands, and resolves physical collisions.">
-          Engine Unity trên điện thoại giải mã tọa độ, tái hiện bàn tay ảo và tính toán va chạm vật lý thời gian thực.
-        </p>
-      </div>
-
-      <div class="step-item">
-        <div class="step-num">4</div>
-        <h4 data-vi="Thị Sai Kính VR 60 FPS" data-en="Stereoscopic 60 FPS VR">Thị Sai Kính VR 60 FPS</h4>
-        <p data-vi="Dựng hình hai mắt lập thể góc rộng FOV 90° trên kính VR, mang lại trải nghiệm hoàn toàn đắm chìm." data-en="Renders dual-eye stereoscopic 60 FPS frames into smartphone VR headset for full immersion.">
-          Dựng hình hai mắt lập thể góc rộng FOV 90° trên kính VR, mang lại trải nghiệm hoàn toàn đắm chìm.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     TECHNOLOGY ARCHITECTURE
-     ═══════════════════════════════════════════════════ -->
-<section class="section" id="tech">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label" data-animate><span data-vi="Kiến Trúc Kỹ Thuật" data-en="System Architecture">Kiến Trúc Kỹ Thuật</span></div>
-      <h2 class="section-title" data-animate data-vi="Được Thiết Kế Tối Ưu Cho Mọi Thiết Bị Học Sinh" data-en="Engineered for Maximum Accessibility on Mobile">
-        Được Thiết Kế Tối Ưu Cho Mọi Thiết Bị Học Sinh
-      </h2>
-    </div>
-
-    <div class="tech-layout">
-      <div class="tech-stack" data-animate>
-        <div class="tech-row">
-          <div class="tech-row-icon"><i class="fas fa-microchip"></i></div>
-          <div>
-            <h4>ESP32 Microcontroller Core (240MHz)</h4>
-            <p data-vi="Xử lý luồng cảm biến đa luồng FreeRTOS với độ ổn định tuyệt đối" data-en="Multi-threaded FreeRTOS sensor pipeline with zero jitter">Xử lý luồng cảm biến đa luồng FreeRTOS với độ ổn định tuyệt đối</p>
-          </div>
-        </div>
-        <div class="tech-row">
-          <div class="tech-row-icon"><i class="fas fa-filter"></i></div>
-          <div>
-            <h4>Kalman / Madgwick Sensor Fusion</h4>
-            <p data-vi="Khử hoàn toàn hiện tượng trôi góc gyro, đảm bảo bàn tay ảo không bị lệch tâm" data-en="Zero angular drift for accurate virtual hand tracking">Khử hoàn toàn hiện tượng trôi góc gyro, đảm bảo bàn tay ảo không bị lệch tâm</p>
-          </div>
-        </div>
-        <div class="tech-row">
-          <div class="tech-row-icon"><i class="fab fa-bluetooth-b"></i></div>
-          <div>
-            <h4>Custom BLE GATT Profile Protocol</h4>
-            <p data-vi="Định dạng gói tin nhị phân nén 16-byte, tối thiểu băng thông và tiết kiệm pin" data-en="Compressed 16-byte binary payload maximizing battery life">Định dạng gói tin nhị phân nén 16-byte, tối thiểu băng thông và tiết kiệm pin</p>
-          </div>
-        </div>
-        <div class="tech-row">
-          <div class="tech-row-icon"><i class="fas fa-vr-cardboard"></i></div>
-          <div>
-            <h4>Unity 6 XR & Universal Render Pipeline (URP)</h4>
-            <p data-vi="Tối ưu hóa hiệu năng render 60 FPS mượt mà ngay trên các dòng điện thoại tầm trung" data-en="Silky-smooth 60 FPS rendering on budget Android devices">Tối ưu hóa hiệu năng render 60 FPS mượt mà ngay trên các dòng điện thoại tầm trung</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="tech-arch" data-animate>
-        <h3 style="margin-bottom:20px;font-size:1.15rem;font-weight:700;" data-vi="Kiến Trúc Hệ Thống 3 Lớp VLAB" data-en="VLAB 3-Tier System Architecture">Kiến Trúc Hệ Thống 3 Lớp VLAB</h3>
-        
-        <div class="arch-layer">
-          <div class="arch-layer-num">1</div>
-          <div>
-            <h4 data-vi="Hardware Layer (Tầng Phần Cứng)" data-en="Hardware Layer">Hardware Layer (Tầng Phần Cứng)</h4>
-            <p data-vi="ESP32 + MPU9250 + Joystick → Bộ lọc Kalman nội suy 100Hz" data-en="ESP32 + MPU9250 + Joystick → 100Hz Kalman Filter">ESP32 + MPU9250 + Joystick → Bộ lọc Kalman nội suy 100Hz</p>
-          </div>
-        </div>
-
-        <div class="arch-layer">
-          <div class="arch-layer-num">2</div>
-          <div>
-            <h4 data-vi="Transport Layer (Tầng Truyền Dữ Liệu)" data-en="Transport Layer">Transport Layer (Tầng Truyền Dữ Liệu)</h4>
-            <p data-vi="BLE 5.0 Custom Service → Bộ giải mã Android Native Receiver (≤ 18ms)" data-en="BLE 5.0 Custom Service → Android Native Receiver (≤ 18ms)">BLE 5.0 Custom Service → Bộ giải mã Android Native Receiver (≤ 18ms)</p>
-          </div>
-        </div>
-
-        <div class="arch-layer">
-          <div class="arch-layer-num">3</div>
-          <div>
-            <h4 data-vi="Rendering & Physics Layer (Tầng Tương Tác 3D)" data-en="XR Physics Layer">Rendering & Physics Layer (Tầng Tương Tác 3D)</h4>
-            <p data-vi="Unity 6 XR Engine + Shader URP + Mô hình thí nghiệm chuẩn xác SGK" data-en="Unity 6 XR + URP Shaders + Curriculum-aligned physics models">Unity 6 XR Engine + Shader URP + Mô hình thí nghiệm chuẩn xác SGK</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     ROADMAP
-     ═══════════════════════════════════════════════════ -->
-<section class="section section--alt" id="roadmap">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label" data-animate><span data-vi="Lộ Trình Phát Triển" data-en="Development Roadmap">Lộ Trình Phát Triển</span></div>
-      <h2 class="section-title" data-animate data-vi="Kế Hoạch Mở Rộng & Triển Khai Thực Tế" data-en="Scaling & School Deployment Roadmap">
-        Kế Hoạch Mở Rộng & Triển Khai Thực Tế
-      </h2>
-    </div>
-
-    <div class="roadmap-timeline" data-animate>
-      <div class="roadmap-item">
-        <div class="roadmap-dot"></div>
-        <h4>
-          <span data-vi="Giai đoạn 1: Nguyên mẫu Phần cứng ESP32 & Firmware" data-en="Phase 1: ESP32 Hardware Kit & Firmware">Giai đoạn 1: Nguyên mẫu Phần cứng ESP32 & Firmware</span>
-          <span class="roadmap-tag roadmap-tag--done" data-vi="Hoàn Thành" data-en="Completed">Hoàn Thành</span>
-        </h4>
-        <p data-vi="Hoàn thiện thiết kế mạch điều khiển, thuật toán lọc Kalman khử trôi góc, truyền thông BLE 5.0 và vỏ in 3D công thái học." data-en="Completed schematic design, Kalman filtering, BLE data link, and 3D printed ergonomic shells.">
-          Hoàn thiện thiết kế mạch điều khiển, thuật toán lọc Kalman khử trôi góc, truyền thông BLE 5.0 và vỏ in 3D công thái học.
-        </p>
-      </div>
-
-      <div class="roadmap-item">
-        <div class="roadmap-dot"></div>
-        <h4>
-          <span data-vi="Giai đoạn 2: Framework Unity 6 XR & Phòng Thí Nghiệm Vật Lý" data-en="Phase 2: Unity 6 XR & Physics Lab Suite">Giai đoạn 2: Framework Unity 6 XR & Phòng Thí Nghiệm Vật Lý</span>
-          <span class="roadmap-tag roadmap-tag--done" data-vi="Hoàn Thành" data-en="Completed">Hoàn Thành</span>
-        </h4>
-        <p data-vi="Xây dựng hệ thống bàn tay ảo, cơ chế tương tác xúc giác haptic, và gói thí nghiệm Cơ học / Quang học / Điện học." data-en="Developed virtual hand rigging, haptic interaction system, and complete Mechanics / Optics / AC modules.">
-          Xây dựng hệ thống bàn tay ảo, cơ chế tương tác xúc giác haptic, và gói thí nghiệm Cơ học / Quang học / Điện học.
-        </p>
-      </div>
-
-      <div class="roadmap-item">
-        <div class="roadmap-dot" style="background:var(--cyan);box-shadow:0 0 16px var(--cyan);"></div>
-        <h4>
-          <span data-vi="Giai đoạn 3: Mở rộng Hóa Học, Sinh Học & Web Sandbox" data-en="Phase 3: Chemistry, Biology & Web Sandbox">Giai đoạn 3: Mở rộng Hóa Học, Sinh Học & Web Sandbox</span>
-          <span class="roadmap-tag roadmap-tag--active" data-vi="Đang Triển Khai" data-en="In Active Deployment">Đang Triển Khai</span>
-        </h4>
-        <p data-vi="Hoàn thiện chuẩn độ buret hóa học, kính hiển vi ảo đa mẫu tế bào, và công cụ mô phỏng trực tuyến trên trình duyệt." data-en="Finalizing chemical buret titration, multi-specimen virtual microscopy, and browser live sandbox.">
-          Hoàn thiện chuẩn độ buret hóa học, kính hiển vi ảo đa mẫu tế bào, và công cụ mô phỏng trực tuyến trên trình duyệt.
-        </p>
-      </div>
-
-      <div class="roadmap-item roadmap-item--future">
-        <div class="roadmap-dot"></div>
-        <h4>
-          <span data-vi="Giai đoạn 4: Cổng Quản Lý Lớp Học Cho Giáo Viên & Trợ Lý AI" data-en="Phase 4: Teacher Dashboard & STEM AI Tutor">Giai đoạn 4: Cổng Quản Lý Lớp Học Cho Giáo Viên & Trợ Lý AI</span>
-          <span class="roadmap-tag roadmap-tag--planned" data-vi="Kế Hoạch Q4/2026" data-en="Planned Q4/2026">Kế Hoạch Q4/2026</span>
-        </h4>
-        <p data-vi="Tích hợp dashboard theo dõi kết quả thực hành của học sinh, giao bài tập thí nghiệm tự động và tích hợp AI gia sư khoa học." data-en="Integrating classroom progress dashboard, automated experiment assignments, and scientific AI tutor.">
-          Tích hợp dashboard theo dõi kết quả thực hành của học sinh, giao bài tập thí nghiệm tự động và tích hợp AI gia sư khoa học.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     FAQ ACCORDION
-     ═══════════════════════════════════════════════════ -->
-<section class="section" id="faq">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label" data-animate><span data-vi="Giải Đáp Thắc Mắc" data-en="FAQ">Giải Đáp Thắc Mắc</span></div>
-      <h2 class="section-title" data-animate data-vi="Câu Hỏi Thường Gặp Về VLAB" data-en="Frequently Asked Questions">
-        Câu Hỏi Thường Gặp Về VLAB
-      </h2>
-    </div>
-
-    <div class="faq-list" data-animate>
-      <div class="faq-item">
-        <button class="faq-question">
-          <span data-vi="Dự án VLAB ra đời trong bối cảnh nào và hướng tới mục tiêu gì?" data-en="What is the mission behind VLAB?">Dự án VLAB ra đời trong bối cảnh nào và hướng tới mục tiêu gì?</span>
-          <i class="fas fa-chevron-down faq-chevron"></i>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner" data-vi="VLAB là dự án STEM được phát triển bởi Đội Ngựa Mán (THPT Chuyên Cao Bằng) trong khuôn khổ cuộc thi Samsung Solve for Tomorrow. Mục tiêu của dự án là giải quyết bài toán thiếu hụt phòng thực hành khoa học ở các trường học vùng cao và nông thôn bằng cách ứng dụng công nghệ thực tế ảo VR chi phí thấp (dưới $20)." data-en="VLAB is a STEM project created by Ngua Man Team (Cao Bang High School for the Gifted) for Samsung Solve for Tomorrow. It aims to eliminate the practical science gap in rural and highland schools through affordable VR under $20.">
-            VLAB là dự án STEM được phát triển bởi Đội Ngựa Mán (THPT Chuyên Cao Bằng) trong khuôn khổ cuộc thi Samsung Solve for Tomorrow. Mục tiêu của dự án là giải quyết bài toán thiếu hụt phòng thực hành khoa học ở các trường học vùng cao và nông thôn bằng cách ứng dụng công nghệ thực tế ảo VR chi phí thấp (dưới $20).
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span data-vi="Bộ điều khiển ESP32 có khó tự chế tạo không? Học sinh có tự làm được không?" data-en="Is the ESP32 controller difficult to build for students?">Bộ điều khiển ESP32 có khó tự chế tạo không? Học sinh có tự làm được không?</span>
-          <i class="fas fa-chevron-down faq-chevron"></i>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner" data-vi="Rất đơn giản! VLAB cung cấp sơ đồ chân cắm nguồn mở, file in 3D vỏ tay cầm miễn phí và firmware nạp sẵn một chạm. Các câu lạc bộ STEM của trường học có thể tự hàn hoặc cắm breadboard chỉ trong 30-45 phút." data-en="Very simple! VLAB provides open schematics, free 3D printable shell files, and one-click firmware upload. STEM school clubs can assemble the kit in 30-45 minutes.">
-            Rất đơn giản! VLAB cung cấp sơ đồ chân cắm nguồn mở, file in 3D vỏ tay cầm miễn phí và firmware nạp sẵn một chạm. Các câu lạc bộ STEM của trường học có thể tự hàn hoặc cắm breadboard chỉ trong 30-45 phút.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span data-vi="VLAB có thay thế hoàn toàn phòng thí nghiệm thật không?" data-en="Does VLAB replace physical laboratories entirely?">VLAB có thay thế hoàn toàn phòng thí nghiệm thật không?</span>
-          <i class="fas fa-chevron-down faq-chevron"></i>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner" data-vi="VLAB không sinh ra để thay thế 100% phòng lab thật, mà đóng vai trò là công cụ bổ trợ đắc lực. Học sinh có thể luyện tập trước các thao tác phức tạp, quan sát các hiện tượng trừu tượng ở cấp độ nguyên tử/phân tử, và thử nghiệm các phản ứng nguy hiểm mà phòng thí nghiệm trường học không thể thực hiện." data-en="VLAB complements physical labs by enabling pre-lab practice, microscopic visualization, and zero-risk hazardous chemical simulations.">
-            VLAB không sinh ra để thay thế 100% phòng lab thật, mà đóng vai trò là công cụ bổ trợ đắc lực. Học sinh có thể luyện tập trước các thao tác phức tạp, quan sát các hiện tượng trừu tượng ở cấp độ nguyên tử/phân tử, và thử nghiệm các phản ứng nguy hiểm mà phòng thí nghiệm trường học không thể thực hiện.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span data-vi="Điện thoại nào có thể chạy được ứng dụng VLAB VR?" data-en="What smartphones are compatible with VLAB VR?">Điện thoại nào có thể chạy được ứng dụng VLAB VR?</span>
-          <i class="fas fa-chevron-down faq-chevron"></i>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner" data-vi="Hầu hết smartphone Android phổ thông (Android 8.0 trở lên, RAM từ 3GB, hỗ trợ Bluetooth 4.2+ / BLE) đều có thể chạy mượt mà ở mức 60 FPS nhờ vào engine Unity 6 URP được tối ưu hóa đồ họa kỹ lưỡng." data-en="Most modern Android smartphones (Android 8.0+, 3GB RAM+, Bluetooth 4.2+ BLE) run smoothly at 60 FPS thanks to our optimized Unity 6 URP pipeline.">
-            Hầu hết smartphone Android phổ thông (Android 8.0 trở lên, RAM từ 3GB, hỗ trợ Bluetooth 4.2+ / BLE) đều có thể chạy mượt mà ở mức 60 FPS nhờ vào engine Unity 6 URP được tối ưu hóa đồ họa kỹ lưỡng.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     FINAL CTA & PARTNERSHIP
-     ═══════════════════════════════════════════════════ -->
-<section class="cta-section" id="cta">
-  <div class="container" data-animate>
-    <div class="cta-card">
-      <div class="cta-aurora"></div>
-      <div class="cta-inner">
-        <div class="cta-badge">
-          <i class="fas fa-graduation-cap"></i>
-          <span data-vi="Đồng Hành Cùng Giáo Dục Việt Nam" data-en="Empowering Vietnamese STEM Education">Đồng Hành Cùng Giáo Dục Việt Nam</span>
-        </div>
-        <h2 class="cta-title" data-vi-html="Mọi Học Sinh Đều Xứng Đáng Có<br><span class='text-gradient'>Phòng Thí Nghiệm Của Riêng Mình.</span>" data-en-html="Every Student Deserves<br><span class='text-gradient'>Their Own Science Laboratory.</span>">
-          Mọi Học Sinh Đều Xứng Đáng Có<br><span class="text-gradient">Phòng Thí Nghiệm Của Riêng Mình.</span>
-        </h2>
-        <p class="cta-desc" data-vi="Hãy cùng VLAB mang công nghệ thực tế ảo nhập vai đến với mọi lớp học và khơi dậy niềm đam mê khoa học cho thế hệ trẻ." data-en="Join VLAB to bring immersive VR science labs to every classroom and ignite scientific passion in the next generation.">
-          Hãy cùng VLAB mang công nghệ thực tế ảo nhập vai đến với mọi lớp học và khơi dậy niềm đam mê khoa học cho thế hệ trẻ.
-        </p>
-
-        <div class="cta-actions">
-          <a href="#sandbox-section" class="btn btn--primary btn--glow">
-            <i class="fas fa-rocket"></i>
-            <span data-vi="Khám Phá Sandbox Ngay" data-en="Launch Sandbox Now">Khám Phá Sandbox Ngay</span>
-          </a>
-          <a href="https://github.com" target="_blank" rel="noopener" class="btn btn--secondary">
-            <i class="fab fa-github"></i>
-            <span data-vi="Tài Liệu Phần Cứng Mở" data-en="Open Hardware Repo">Tài Liệu Phần Cứng Mở</span>
-          </a>
-        </div>
-
-        <div class="cta-downloads">
-          <a href="#" class="store-badge">
-            <i class="fab fa-google-play"></i>
-            <div class="store-badge-text">
-              <small data-vi="Tải về trên" data-en="Get it on">Tải về trên</small>
-              <span>Google Play</span>
-            </div>
-          </a>
-          <a href="#" class="store-badge">
-            <i class="fab fa-apple"></i>
-            <div class="store-badge-text">
-              <small data-vi="Khả dụng trên" data-en="Available on">Khả dụng trên</small>
-              <span>App Store</span>
-            </div>
-          </a>
-          <a href="#" class="store-badge">
-            <i class="fas fa-file-pdf"></i>
-            <div class="store-badge-text">
-              <small data-vi="Tải tài liệu" data-en="Whitepaper">Tải tài liệu</small>
-              <span>VLAB Whitepaper</span>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     FOOTER
+     FOOTER & ATTRIBUTION
      ═══════════════════════════════════════════════════ -->
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
+      <!-- Brand column -->
       <div class="footer-brand">
         <img src="assets/images/logos/logo-white-text.png" alt="VLAB Logo" class="footer-logo" id="footer-logo">
-        <p data-vi="Nền tảng phòng thí nghiệm ảo STEM chi phí thấp cho học sinh THPT. Sản phẩm dự thi Samsung Solve for Tomorrow của Đội Ngựa Mán — THPT Chuyên Cao Bằng." data-en="Low-cost virtual STEM lab platform for high school students. Samsung Solve for Tomorrow entry by Ngua Man Team — Cao Bang High School for the Gifted.">
-          Nền tảng phòng thí nghiệm ảo STEM chi phí thấp cho học sinh THPT. Sản phẩm dự thi Samsung Solve for Tomorrow của Đội Ngựa Mán — THPT Chuyên Cao Bằng.
-        </p>
-        <div class="footer-status-tag">
-          <span class="status-dot"></span>
-          <span>VLAB Engine v2.4 Online · All Systems Operational</span>
+        <p data-vi="Dự án nghiên cứu & sáng tạo phòng thí nghiệm STEM ảo chi phí thấp dành cho học sinh THPT." data-en="Low-cost virtual STEM laboratory research & innovation project for high school students.">Dự án nghiên cứu & sáng tạo phòng thí nghiệm STEM ảo chi phí thấp dành cho học sinh THPT.</p>
+        <div style="margin-top:12px; font-size:0.78rem; color:var(--text-tertiary);">
+          <i class="fas fa-award" style="color:var(--cyan); margin-right:6px;" aria-hidden="true"></i>
+          <span data-vi="Dự án tham gia Samsung Solve for Tomorrow 2026" data-en="Participant in Samsung Solve for Tomorrow 2026">Dự án tham gia Samsung Solve for Tomorrow 2026</span>
         </div>
       </div>
 
+      <!-- Nav links -->
       <div class="footer-col">
-        <h4 data-vi="Module Phòng Lab" data-en="Lab Modules">Module Phòng Lab</h4>
-        <a href="#sandbox-section" onclick="switchSandboxTab('physics')" data-vi="Phòng Vật Lý Ảo" data-en="Physics Lab">Phòng Vật Lý Ảo</a>
-        <a href="#sandbox-section" onclick="switchSandboxTab('chemistry')" data-vi="Phòng Hóa Học Ảo" data-en="Chemistry Lab">Phòng Hóa Học Ảo</a>
-        <a href="#sandbox-section" onclick="switchSandboxTab('biology')" data-vi="Kính Hiển Vi Sinh Học" data-en="Biology Microscope">Kính Hiển Vi Sinh Học</a>
-        <a href="#sandbox-section" onclick="switchSandboxTab('engineering')" data-vi="Bàn Kỹ Thuật Điện Tử" data-en="Electronics Workbench">Bàn Kỹ Thuật Điện Tử</a>
+        <h4 data-vi="Nội dung" data-en="Navigation">Nội dung</h4>
+        <a href="#why" data-vi="Bối cảnh" data-en="Context">Bối cảnh</a>
+        <a href="#how" data-vi="Cách hoạt động" data-en="How It Works">Cách hoạt động</a>
+        <a href="#sandbox" data-vi="Mô phỏng Web" data-en="Web Simulator">Mô phỏng Web</a>
+        <a href="#status" data-vi="Hiện trạng kỹ thuật" data-en="Technical Status">Hiện trạng kỹ thuật</a>
       </div>
 
+      <!-- Resources -->
       <div class="footer-col">
-        <h4 data-vi="Dự Án & Tài Nguyên" data-en="Project & Resources">Dự Án & Tài Nguyên</h4>
-        <a href="#why" data-vi="Vì sao VLAB" data-en="Why VLAB">Vì sao VLAB</a>
-        <a href="#hardware" data-vi="Sơ đồ Phần cứng $20" data-en="$20 Hardware Kit">Sơ đồ Phần cứng $20</a>
-        <a href="#how" data-vi="Quy trình hoạt động" data-en="How It Works">Quy trình hoạt động</a>
-        <a href="#tech" data-vi="Kiến trúc công nghệ" data-en="Technology Stack">Kiến trúc công nghệ</a>
+        <h4 data-vi="Tài nguyên" data-en="Resources">Tài nguyên</h4>
+        <a href="#roadmap" data-vi="Lộ trình phát triển" data-en="Roadmap">Lộ trình phát triển</a>
         <a href="#faq" data-vi="Hỏi đáp thường gặp" data-en="FAQ">Hỏi đáp thường gặp</a>
+        <a href="https://github.com/thieen209/VLAB-website" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-github" style="margin-right:4px;"></i> GitHub Repo
+        </a>
       </div>
 
+      <!-- Team info -->
       <div class="footer-col">
-        <h4 data-vi="Liên Hệ & Đội Ngũ" data-en="Contact & Team">Liên Hệ & Đội Ngũ</h4>
-        <p class="footer-text-sm"><strong>Đội Ngựa Mán</strong></p>
-        <p class="footer-text-sm">Trường THPT Chuyên Cao Bằng</p>
-        <p class="footer-text-sm">Cuộc thi: <em>Samsung Solve for Tomorrow</em></p>
-        <div class="footer-social">
-          <a href="#" title="Facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" title="YouTube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-          <a href="#" title="GitHub" aria-label="GitHub"><i class="fab fa-github"></i></a>
-        </div>
+        <h4 data-vi="Đội ngũ tác giả" data-en="Project Team">Đội ngũ tác giả</h4>
+        <p style="font-size:0.84rem; color:var(--text-secondary); margin-bottom:6px;">
+          <strong style="color:var(--text-primary);">Đội Ngựa Mán</strong><br>
+          Trường THPT Chuyên Cao Bằng
+        </p>
+        <span class="badge badge--demo" style="font-size:0.7rem;" data-vi="Giấy phép mã nguồn mở MIT" data-en="MIT Open Source License">Giấy phép mã nguồn mở MIT</span>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <span>© 2026 VLAB · Trường THPT Chuyên Cao Bằng · Bản quyền thuộc về Đội Ngựa Mán</span>
-      <div class="footer-links">
-        <a href="#" data-vi="Điều khoản sử dụng" data-en="Terms of Service">Điều khoản sử dụng</a>
-        <span class="footer-dot">•</span>
-        <a href="#" data-vi="Chính sách bảo mật" data-en="Privacy Policy">Chính sách bảo mật</a>
+      <span>© 2026 VLAB · THPT Chuyên Cao Bằng · <span data-vi="Dự án tham gia Cuộc thi Samsung Solve for Tomorrow 2026" data-en="Participant project in Samsung Solve for Tomorrow 2026">Dự án tham gia Cuộc thi Samsung Solve for Tomorrow 2026</span></span>
+      <div class="footer-social">
+        <a href="https://github.com/thieen209/VLAB-website" target="_blank" rel="noopener noreferrer" title="GitHub Repository" aria-label="GitHub Repository"><i class="fab fa-github" aria-hidden="true"></i></a>
+        <a href="#hero" title="Về đầu trang" aria-label="Về đầu trang"><i class="fas fa-arrow-up" aria-hidden="true"></i></a>
       </div>
     </div>
   </div>
 </footer>
 
-<!-- Main Logic Engine -->
 <script src="assets/scripts/main.js"></script>
 </body>
 </html>
