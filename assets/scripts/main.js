@@ -25,7 +25,7 @@ function initThemeToggle() {
   const footerLogo = document.getElementById('footer-logo');
   if (!toggle) return;
 
-  const saved = localStorage.getItem('vlab-theme') || 'dark';
+  const saved = localStorage.getItem('vlab-theme') || 'light';
   applyTheme(saved);
 
   toggle.addEventListener('click', () => {
@@ -60,19 +60,28 @@ function initLanguageToggle() {
   const btnEn = document.getElementById('lang-en');
   if (!btnVi || !btnEn) return;
 
-  const savedLang = localStorage.getItem('vlab-lang') || 'vi';
+  let savedLang = 'vi';
+  try { savedLang = localStorage.getItem('vlab-lang') || 'vi'; } catch (_) { /* Storage is optional. */ }
+  const requestedLang = new URLSearchParams(window.location.search).get('lang');
+  if (requestedLang === 'vi' || requestedLang === 'en') savedLang = requestedLang;
   setLang(savedLang);
 
   btnVi.addEventListener('click', () => setLang('vi'));
   btnEn.addEventListener('click', () => setLang('en'));
 
   function setLang(lang) {
+    lang = lang === 'en' ? 'en' : 'vi';
     currentLanguage = lang;
-    localStorage.setItem('vlab-lang', lang);
+    try { localStorage.setItem('vlab-lang', lang); } catch (_) { /* Keep the page usable without storage. */ }
     document.documentElement.setAttribute('lang', lang);
 
     btnVi.classList.toggle('active', lang === 'vi');
     btnEn.classList.toggle('active', lang === 'en');
+    btnVi.setAttribute('aria-pressed', String(lang === 'vi'));
+    btnEn.setAttribute('aria-pressed', String(lang === 'en'));
+    document.querySelectorAll('[data-legal-lang]').forEach(el => {
+      el.hidden = el.dataset.legalLang !== lang;
+    });
 
     document.querySelectorAll('[data-vi]').forEach(el => {
       const text = lang === 'vi' ? el.getAttribute('data-vi') : el.getAttribute('data-en');
@@ -88,6 +97,9 @@ function initLanguageToggle() {
     if (window.refreshSandboxUI) {
       window.refreshSandboxUI();
     }
+    document.querySelectorAll('.faq-item.open .faq-answer').forEach(el => {
+      el.style.maxHeight = el.scrollHeight + 'px';
+    });
   }
 }
 
@@ -98,6 +110,15 @@ function initMobileNav() {
   const btn = document.getElementById('nav-mobile-btn');
   const drawer = document.getElementById('mobile-drawer');
   if (!btn || !drawer) return;
+
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && drawer.classList.contains('open')) {
+      drawer.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      drawer.setAttribute('aria-hidden', 'true');
+      btn.focus();
+    }
+  });
 
   btn.addEventListener('click', () => {
     const isOpen = drawer.classList.contains('open');
@@ -471,7 +492,7 @@ function initSandboxManager() {
             <span>${isVi ? 'Chiều dài dây treo (L)' : 'String Length (L)'}</span>
             <span id="val-length">${params.length} cm</span>
           </div>
-          <input type="range" class="sandbox-slider" id="slider-length" min="60" max="220" value="${params.length}">
+          <input type="range" class="sandbox-slider" id="slider-length" aria-label="${isVi ? 'Chiều dài dây treo' : 'String length'}" min="60" max="220" value="${params.length}">
         </div>
 
         <div class="sandbox-control-group">
@@ -516,7 +537,7 @@ function initSandboxManager() {
             <span>${isVi ? 'Độ pH của dung dịch' : 'Solution pH Value'}</span>
             <span id="val-ph">pH ${params.ph.toFixed(1)}</span>
           </div>
-          <input type="range" class="sandbox-slider" id="slider-ph" min="1" max="14" step="0.1" value="${params.ph}">
+          <input type="range" class="sandbox-slider" id="slider-ph" aria-label="pH" min="1" max="14" step="0.1" value="${params.ph}">
         </div>
 
         <div style="display:flex; gap:6px; margin-top:8px;">
@@ -555,7 +576,7 @@ function initSandboxManager() {
             <span>${isVi ? 'Độ phóng đại (Magnification)' : 'Magnification Level'}</span>
             <span id="val-zoom">${(params.zoom * 200).toFixed(0)}x</span>
           </div>
-          <input type="range" class="sandbox-slider" id="slider-zoom" min="0.6" max="3.0" step="0.1" value="${params.zoom}">
+          <input type="range" class="sandbox-slider" id="slider-zoom" aria-label="${isVi ? 'Độ phóng đại' : 'Magnification'}" min="0.6" max="3.0" step="0.1" value="${params.zoom}">
         </div>
 
         <div class="sandbox-control-group">

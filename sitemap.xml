@@ -3,10 +3,12 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://vlabwebapp.vercel.app/</loc>
-    <lastmod>2026-09-02</lastmod>
+    <lastmod>2026-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="vi" href="https://vlabwebapp.vercel.app/?lang=vi"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://vlabwebapp.vercel.app/?lang=en"/>
   </url>
+  <url><loc>https://vlabwebapp.vercel.app/terms</loc></url>
+  <url><loc>https://vlabwebapp.vercel.app/privacy</loc></url>
 </urlset>
