@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="100%" height="100%" fill="none">
+  <defs>
+    <!-- Background Laboratory Ambient Gradient (Translucent real lab view through lenses) -->
+    <linearGradient id="lab-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="50%" stop-color="#EDF2F7"/>
+      <stop offset="100%" stop-color="#E2E8F0"/>
+    </linearGradient>
+    
+    <!-- Transparent Polycarbonate Lens Glass Shimmer -->
+    <linearGradient id="lens-glass" x1="20%" y1="10%" x2="80%" y2="90%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.85"/>
+      <stop offset="40%" stop-color="#E0F2FE" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#BAE6FD" stop-opacity="0.45"/>
+    </linearGradient>
+
+    <!-- Side Shield Mesh -->
+    <pattern id="shield-pattern" width="8" height="8" patternUnits="userSpaceOnUse">
+      <circle cx="4" cy="4" r="1.5" fill="#94A3B8" opacity="0.4"/>
+    </pattern>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="800" height="480" fill="url(#lab-bg)"/>
+
+  <!-- Background Laboratory Context Hint (Beakers & Racks in background to prove see-through nature) -->
+  <g opacity="0.35">
+    <rect x="180" y="160" width="40" height="90" rx="3" fill="#94A3B8"/>
+    <rect x="230" y="180" width="35" height="70" rx="3" fill="#64748B"/>
+    <rect x="560" y="170" width="60" height="80" rx="4" fill="#94A3B8"/>
+    <line x1="100" y1="260" x2="700" y2="260" stroke="#CBD5E1" stroke-width="2"/>
+  </g>
+
+  <!-- Transparent Safety Eyewear Frame (Laboratory Goggles Architecture) -->
+  <!-- Upper Brow Bar Frame -->
+  <path d="M 160,200 
+           C 250,175 360,180 400,195 
+           C 440,180 550,175 640,200 
+           C 670,210 680,230 670,250 
+           C 660,240 640,225 610,220 
+           C 530,205 440,210 400,225 
+           C 360,210 270,205 190,220 
+           C 160,225 140,240 130,250 
+           C 120,230 130,210 160,200 Z" 
+        fill="#1E293B" stroke="#0F172A" stroke-width="3"/>
+
+  <!-- Left Transparent Lens -->
+  <path d="M 165,215 
+           C 260,200 360,205 385,230 
+           C 395,260 380,330 330,355 
+           C 270,380 190,360 160,320 
+           C 140,290 145,240 165,215 Z" 
+        fill="url(#lens-glass)" stroke="#38BDF8" stroke-width="2.5"/>
+
+  <!-- Left Lens Glare Reflection -->
+  <path d="M 180,235 C 240,225 320,228 350,245" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- Right Transparent Lens -->
+  <path d="M 635,215 
+           C 540,200 440,205 415,230 
+           C 405,260 420,330 470,355 
+           C 530,380 610,360 640,320 
+           C 660,290 655,240 635,215 Z" 
+        fill="url(#lens-glass)" stroke="#38BDF8" stroke-width="2.5"/>
+
+  <!-- Right Lens Glare Reflection -->
+  <path d="M 620,235 C 560,225 480,228 450,245" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- Soft Ergonomic Nose Bridge -->
+  <path d="M 385,230 C 400,240 400,240 415,230 C 420,255 380,255 385,230 Z" fill="#475569"/>
+
+  <!-- Protective Side Shields (Laboratory Safety Standard) -->
+  <path d="M 140,220 L 115,245 L 125,310 L 155,305 Z" fill="url(#shield-pattern)" stroke="#64748B" stroke-width="1.5"/>
+  <path d="M 660,220 L 685,245 L 675,310 L 645,305 Z" fill="url(#shield-pattern)" stroke="#64748B" stroke-width="1.5"/>
+
+  <!-- Temples / Eyewear Arms -->
+  <path d="M 150,205 C 120,195 90,190 70,185" stroke="#1E293B" stroke-width="6" stroke-linecap="round"/>
+  <path d="M 650,205 C 680,195 710,190 730,185" stroke="#1E293B" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- ====================================================================
+       Conceptual Micro-OLED / Optical Waveguide HUD Overlays
+       (Transparent, educational STEM overlays with placeholder values)
+       ==================================================================== -->
+
+  <!-- Left Lens Overlay 1: Next Step Directive -->
+  <g>
+    <rect x="180" y="250" width="165" height="34" rx="4" fill="rgba(16, 40, 92, 0.85)" stroke="#087F8C" stroke-width="1.5"/>
+    <circle cx="195" cy="267" r="4" fill="#38BDF8"/>
+    <text x="206" y="264" fill="#FFFFFF" font-family="'Be Vietnam Pro', sans-serif" font-size="9" font-weight="bold">BƯỚC TIẾP THEO</text>
+    <text x="206" y="276" fill="#93C5FD" font-family="'Be Vietnam Pro', sans-serif" font-size="8">Nhỏ 3 giọt phenolphtalein</text>
+  </g>
+
+  <!-- Left Lens Overlay 2: Safety Warning -->
+  <g>
+    <rect x="190" y="300" width="145" height="28" rx="4" fill="rgba(153, 27, 27, 0.85)" stroke="#F87171" stroke-width="1"/>
+    <text x="202" y="318" fill="#FEE2E2" font-family="'Be Vietnam Pro', sans-serif" font-size="9" font-weight="bold">⚠️ CẨN TRỌNG: Axit đậm đặc</text>
+  </g>
+
+  <!-- Right Lens Overlay 1: Tool & Spec Recognition -->
+  <g>
+    <rect x="460" y="250" width="155" height="34" rx="4" fill="rgba(16, 40, 92, 0.85)" stroke="#087F8C" stroke-width="1.5"/>
+    <text x="472" y="264" fill="#FFFFFF" font-family="'Be Vietnam Pro', sans-serif" font-size="9" font-weight="bold">Buret chuẩn độ 50 ml</text>
+    <text x="472" y="276" fill="#6EE7B7" font-family="'JetBrains Mono', monospace" font-size="8">V = --.-- ml [Placeholder]</text>
+  </g>
+
+  <!-- Right Lens Overlay 2: STEM Curricular Context -->
+  <g>
+    <rect x="475" y="300" width="135" height="28" rx="4" fill="rgba(15, 23, 42, 0.85)" stroke="#64748B" stroke-width="1"/>
+    <text x="487" y="318" fill="#94A3B8" font-family="'Be Vietnam Pro', sans-serif" font-size="8.5">Khung STEM THPT 2018</text>
+  </g>
+
+  <!-- Mandatory Top Header Pill Badge -->
+  <rect x="250" y="30" width="300" height="34" rx="17" fill="#EDF2FA" stroke="#087F8C" stroke-width="2"/>
+  <circle cx="270" cy="47" r="5" fill="#087F8C"/>
+  <text x="395" y="52" fill="#10285C" font-family="'Be Vietnam Pro', sans-serif" font-size="11" font-weight="800" text-anchor="middle" letter-spacing="1">CONCEPT — ĐỊNH HƯỚNG TƯƠNG LAI</text>
+
+  <!-- Mandatory Bottom Subtitle Caption -->
+  <rect x="200" y="420" width="400" height="26" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
+  <text x="400" y="437" fill="#64748B" font-family="'Be Vietnam Pro', sans-serif" font-size="10" text-anchor="middle">Minh họa ý tưởng; chưa phải phần cứng hiện có của VLAB.</text>
+</svg>

@@ -4,7 +4,7 @@
   "description": "",
   "main": "assets/scripts/main.js",
   "scripts": {
-    "start": "npx serve",
+    "start": "node server.cjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
