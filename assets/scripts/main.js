@@ -14,6 +14,25 @@
   }
   document.querySelectorAll('[data-lang]').forEach(el => el.addEventListener('click', () => translate(el.dataset.lang)));
   translate(language);
+  const contact = document.createElement('dialog');
+  contact.className = 'contact-dialog';
+  contact.setAttribute('aria-labelledby', 'contact-title');
+  contact.innerHTML = '<button type="button" class="contact-close" aria-label="Đóng / Close">×</button><h2 id="contact-title" data-vi="Liên hệ VLAB" data-en="Contact VLAB">Liên hệ VLAB</h2><p data-vi="Gửi lời nhắn cho Đội Ngựa Mán qua địa chỉ dưới đây." data-en="Send the Ngựa Mán team a message at the address below.">Gửi lời nhắn cho Đội Ngựa Mán qua địa chỉ dưới đây.</p><input class="contact-address" aria-label="Email" readonly value="nguamanvlab@gmail.com"><button type="button" class="button contact-copy" data-vi="Sao chép email" data-en="Copy email">Sao chép email</button><p class="contact-status" role="status"></p>';
+  document.body.append(contact);
+  let contactTrigger;
+  document.querySelectorAll('[data-contact]').forEach(button => button.addEventListener('click', () => {
+    contactTrigger = button;
+    contact.querySelector('.contact-status').textContent = '';
+    translate(language);
+    contact.showModal();
+  }));
+  contact.querySelector('.contact-close').addEventListener('click', () => contact.close());
+  contact.addEventListener('click', event => { if (event.target === contact) { const r=contact.getBoundingClientRect(); if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)contact.close(); } });
+  contact.addEventListener('close', () => contactTrigger?.focus());
+  contact.querySelector('.contact-copy').addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText('nguamanvlab@gmail.com'); contact.querySelector('.contact-status').textContent = tr('Đã sao chép địa chỉ email.','Email address copied.'); }
+    catch (_) { const input=contact.querySelector('input'); input.focus(); input.select(); contact.querySelector('.contact-status').textContent=tr('Chọn sao chép hoặc nhấn Ctrl+C.','Choose Copy or press Ctrl+C.'); }
+  });
   function syncTheme() {
     const dark = document.documentElement.dataset.theme === 'dark';
     document.querySelectorAll('[data-theme-logo]').forEach(img => { img.src = `assets/images/logos/logo-${dark ? 'white' : 'black'}-text.png`; });
