@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://vlabwebapp.vercel.app/</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url><loc>https://vlabwebapp.vercel.app/terms</loc></url>
+  <url><loc>https://vlabwebapp.vercel.app/labs</loc></url>
+  <url><loc>https://vlabwebapp.vercel.app/kit</loc></url>
+  <url><loc>https://vlabwebapp.vercel.app/download</loc></url>
+  <url><loc>https://vlabwebapp.vercel.app/vision</loc></url>
+  <url><loc>https://vlabwebapp.vercel.app/privacy</loc></url>
+</urlset>
