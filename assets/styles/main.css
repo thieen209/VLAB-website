@@ -35,3 +35,25 @@ html[data-theme=dark]{color-scheme:dark}html[data-theme=light]{color-scheme:ligh
 @media(max-width:760px){.logo{width:53px;height:53px}.nav-shell{min-height:72px}.theme-toggle{width:40px;height:40px}.nav-end{gap:4px}.languages button{min-width:30px}.ai-section .config-grid{margin-top:28px}}
 .lab-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.vision-image .image-caption{color:#203f65;text-shadow:none}@media(max-width:760px){.lab-grid{grid-template-columns:1fr}}
 [data-theme=dark] .legal-source{background:#142136}[data-theme=dark] .legal-copy a{color:#82b2ff}[data-theme=dark] .demo-controls output{background:#142136;color:#bcd5ff}.lab-detail h3{margin-top:16px;margin-bottom:14px}
+/* Readable supporting text across desktop and mobile. */
+body{font-size:17px;line-height:1.75}
+.nav-shell nav a{font-size:15px}.languages button{font-size:13px}
+.button,.button.small,.text-link{font-size:15px}
+.eyebrow{font-size:13px;letter-spacing:.1em}
+.stats p,.members p,.system-flow p,.lab-card-body p,.config-grid p,.roadmap p,.footer-top p,.footer-top a:not(.logo){font-size:16px}
+.fineprint,.note,.image-caption,.video-status,.hero-meta,.badge,.glass-label,.bar-row small,.footer-bottom,.footer-bottom .text-link{font-size:14px}
+.demo-tabs button,.demo-controls p,.demo-controls label,output,.mini-button{font-size:15px}
+#demo-stage-label{font-size:13px}.bar-row{font-size:16px}.hero-meta{letter-spacing:.035em;gap:20px;flex-wrap:wrap}
+.future-caption .eyebrow{font-size:13px}.footer-top .eyebrow{font-size:13px}.kit-render>p{font-size:14px}
+@media(max-width:1000px) and (min-width:761px){.nav-shell nav{gap:12px}.nav-shell nav a{font-size:13px}.nav-shell .button.small{font-size:13px;padding-inline:14px}.nav-end{gap:4px}}
+@media(max-width:760px){
+ body{font-size:16px}.hero-description,.page-hero .lead,.intro-copy .lead,.video-copy p,.download-content p{font-size:16px}
+ .button,.closing .button,.text-link,.stat-note .text-link,.page-tabs .text-link,.section-heading>.text-link{font-size:14px}
+ .section-heading{flex-wrap:wrap}.eyebrow,.future-caption .eyebrow{font-size:12px}
+ .stats p,.members p,.system-flow p,.footer-top p,.footer-top a:not(.logo){font-size:15px}
+ .members h3{font-size:17px}.fineprint,.note,.image-caption,.video-status,.hero-meta,.glass-label,.footer-bottom,.footer-bottom .text-link,.journey p{font-size:13px}
+ .faq summary{font-size:16px}.architecture summary{font-size:15px}.demo-tabs button{font-size:13px}.demo-controls p{font-size:16px}
+ .hero-meta{gap:8px;justify-content:flex-start}.hero-meta>span{white-space:normal}
+ .section-heading>.text-link{flex-shrink:1}.languages button{font-size:12px}.footer-top{gap:28px 16px}
+ .image-caption{letter-spacing:0}.media-bottom h2{font-size:25px}
+}
