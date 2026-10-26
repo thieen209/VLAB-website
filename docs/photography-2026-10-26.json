@@ -1,0 +1,37 @@
+{
+  "home-current.webp": {
+    "source": "main-menu.png",
+    "width": 2560,
+    "height": 1440,
+    "webpBytes": 129868,
+    "sourceSha256": "0cc29da1f798fcdb8ac250fe1e75fe0d9bf5c36b237d9c837f49b3aa825fdcf0"
+  },
+  "physics.webp": {
+    "source": "physics.png",
+    "width": 3840,
+    "height": 2160,
+    "webpBytes": 451510,
+    "sourceSha256": "591831a12f19af7bf0cfbc30e4182c81c5c8c5d458ef121f7d89fd734e4293a8"
+  },
+  "chemistry.webp": {
+    "source": "chemistry.png",
+    "width": 3840,
+    "height": 2160,
+    "webpBytes": 362766,
+    "sourceSha256": "dda46d6ae36abf9d0181e7d9ad8e2832c471b3316f0c06eea0cd9f16ffc19b7e"
+  },
+  "biology.webp": {
+    "source": "biology.png",
+    "width": 3840,
+    "height": 2160,
+    "webpBytes": 476606,
+    "sourceSha256": "2a26d53d390c7967f9ba0074264181787bf6d60c3cf7e0224c6b570ee8229687"
+  },
+  "engineering.webp": {
+    "source": "engineering.png",
+    "width": 3840,
+    "height": 2160,
+    "webpBytes": 415280,
+    "sourceSha256": "9887800a4743fd20ae4bcd94be94e3a912cc9779637af5c9b681959674a01bc7"
+  }
+}

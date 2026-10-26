@@ -1,0 +1,11 @@
+Fresh 2026-10-26 website photographs from the current Unity project. Isolated QA profile. Ultra tier 3, render scale 1, 4x MSAA, 2048 shadow maps, four cascades. Staged native first-lesson equipment; no claim of experiment completion. No production scenes or assets saved.
+main-menu | 2560x1440
+physics | 3840x2160
+VERIFIED Physics | Ultra tier=3; scale=1; MSAA=4; shadows=2048; cascades=4; all Canvas UI disabled; FOV=78; camera=(0.40, 1.60, 0.40)
+biology | 3840x2160
+VERIFIED Biology | Ultra tier=3; scale=1; MSAA=4; shadows=2048; cascades=4; all Canvas UI disabled; FOV=78; camera=(0.40, 1.60, 0.40)
+engineering | 3840x2160
+VERIFIED Engineering | Ultra tier=3; scale=1; MSAA=4; shadows=2048; cascades=4; all Canvas UI disabled; FOV=78; camera=(0.40, 1.60, 0.40)
+chemistry | 3840x2160
+VERIFIED Chemistry | Ultra tier=3; scale=1; MSAA=4; shadows=2048; cascades=4; all Canvas UI disabled; FOV=78; camera=(3.60, 1.60, 0.60)
+Visual QA rejected the first chemistry camera inside a cabinet; accepted chemistry was retaken from the opposite safe corner. All five final images visually inspected.

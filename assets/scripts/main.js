@@ -56,12 +56,55 @@
   mobile?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
   matchMedia('(min-width: 761px)').addEventListener('change', e => { if (e.matches) closeMenu(); });
+
+  const motionToggle = document.querySelector('.motion-toggle');
+  const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
+  function syncMotion() {
+    const enabled = document.documentElement.dataset.motion !== 'off';
+    motionToggle?.setAttribute('aria-pressed', String(enabled));
+    if (motionToggle) motionToggle.textContent = enabled ? tr('Chuyển động: Bật', 'Motion: On') : tr('Chuyển động: Tắt', 'Motion: Off');
+    if (!enabled) document.querySelectorAll('.reveal').forEach(el => el.getAnimations().forEach(animation => animation.cancel()));
+    document.dispatchEvent(new Event('motionchange'));
+  }
+  motionToggle?.addEventListener('click', () => {
+    const motion = document.documentElement.dataset.motion === 'off' ? 'on' : 'off';
+    document.documentElement.dataset.motion = motion;
+    try { localStorage.setItem('vlab-motion', motion); } catch (_) {}
+    syncMotion();
+  });
+  motionPreference.addEventListener('change', event => {
+    let saved;
+    try { saved = localStorage.getItem('vlab-motion'); } catch (_) {}
+    if (saved !== 'on' && saved !== 'off') {
+      document.documentElement.dataset.motion = event.matches ? 'off' : 'on';
+      syncMotion();
+    }
+  });
+  document.addEventListener('languagechange', syncMotion);
+  syncMotion();
+  if ('IntersectionObserver' in window && 'animate' in Element.prototype) {
+    const reveals = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        reveals.unobserve(entry.target);
+        if (document.documentElement.dataset.motion === 'off') return;
+        entry.target.animate([
+          { opacity: 0, transform: 'translateY(18px)' },
+          { opacity: 1, transform: 'none' }
+        ], { duration: 550, easing: 'cubic-bezier(.2,.7,.2,1)' });
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.intro > div, .section-heading, .lab-card, .system-flow li, .split-feature > div, .lab-detail > div, .config-grid article, .download-card, .closing').forEach(el => {
+      el.classList.add('reveal');
+      reveals.observe(el);
+    });
+  }
   const canvas = document.querySelector('#experiment');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
   let mode = 0, time = 0, previous = 0, visible = false;
   let state = defaults();
-  function defaults() { return {length:1.2,gravity:9.8,ph:7,zoom:200,specimen:'plant',gate:'AND',a:true,b:false,paused:matchMedia('(prefers-reduced-motion: reduce)').matches}; }
+  function defaults() { return {length:1.2,gravity:9.8,ph:7,zoom:200,specimen:'plant',gate:'AND',a:true,b:false,paused:document.documentElement.dataset.motion === 'off'}; }
   const titles = [['Con lắc đơn','Simple pendulum'],['Thang pH','The pH scale'],['Quan sát tế bào','Explore a cell'],['Cổng logic','Logic gates']];
   const descriptions = [['Thay đổi chiều dài và gia tốc trọng trường. Mô hình góc nhỏ, bỏ qua lực cản.','Change length and gravity. Small-angle model without air resistance.'],['Màu chỉ thị mang tính minh họa. Không dùng để nhận diện hóa chất thực tế.','Indicator colours are illustrative, not a way to identify real chemicals.'],['Sơ đồ tế bào minh họa, không phải ảnh kính hiển vi.','An illustrative cell diagram, not a microscope photograph.'],['Bật hai đầu vào và khám phá quy tắc AND, OR, XOR.','Toggle two inputs and explore AND, OR and XOR.']];
   const controls = document.querySelector('#demo-inputs'), output = document.querySelector('#demo-output');
@@ -103,6 +146,9 @@
   document.querySelector('#pause-demo').addEventListener('click',()=>{state.paused=!state.paused;render();});
   document.querySelector('#reset-demo').addEventListener('click',()=>{state=defaults();time=0;render();});
   document.addEventListener('languagechange',render);
+  document.addEventListener('motionchange', () => {
+    if (document.documentElement.dataset.motion === 'off') { state.paused = true; render(); }
+  });
   new ResizeObserver(()=>{const dpr=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(canvas.clientWidth*dpr);canvas.height=Math.round(canvas.clientHeight*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);draw();}).observe(canvas);
   new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;}).observe(canvas);
   function frame(now){if(visible&&!document.hidden&&mode===0&&!state.paused){time+=Math.min((now-previous)/1000,.05);draw();}previous=now;requestAnimationFrame(frame);}
